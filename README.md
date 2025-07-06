@@ -6,5 +6,5 @@ All of my config files in one github repo
 3. For starting template see "nvim/README.md"
 # Tmux
 Written manually
-# zsh
-Not done yet!!!!!
+# Vim
+Written manually
