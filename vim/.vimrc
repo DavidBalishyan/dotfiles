@@ -6,7 +6,7 @@ set shiftwidth=2
 " Status bar
 set laststatus=2
 highlight VertSplit guibg=#181818 guifg=#996228
-highlight SLBackground guibg=#181818 guifg=#996228
+highlight SLBackground guibg=#181818 guifg=#996229
 highlight SLFileType guibg=indianred guifg=#663333
 highlight SLBufNumber guibg=SeaGreen guifg=#003333
 highlight SLLineNumber guibg=#80a0ff guifg=#003366
@@ -37,6 +37,7 @@ nnoremap <Leader>ncc :set colorcolumn-=80<cr>
 let mapleader=" "
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
+nnoremap <Leader>x :x<cr>
+nnoremap <Leader>o :Explore<cr>
 " Set mouse on
 set mouse=a
-
