@@ -9,7 +9,7 @@
 # ------------------------------------------------------------------------------------------------
 #                                         Getting the resources
 curl https://example.com/ >~/.zshrc
-git clone # ohMyZsh + p10k
+git clone https://github.com/DavidBalishyan/ohmyzsh.git >~/.oh-my-zsh/ # ohMyZsh + p10k
 # ------------------------------------------------------------------------------------------------
 
 # Restart Zsh
