@@ -1,5 +1,6 @@
-" Enable numbered lines
+" Enable nmbered lines
 set nu
+set rnu
 " Tab config
 set tabstop=2
 set shiftwidth=2
@@ -11,7 +12,7 @@ highlight SLFileType guibg=indianred guifg=#663333
 highlight SLBufNumber guibg=SeaGreen guifg=#003333
 highlight SLLineNumber guibg=#80a0ff guifg=#003366
 set statusline=\%#SLBackground#
-set statusline+=\ %F
+" set statusline+=\%/
 set statusline+=\%= " separator
 set statusline+=\ %#SLFileType#
 set statusline+=\ FT:\ %Y
@@ -37,7 +38,9 @@ nnoremap <Leader>ncc :set colorcolumn-=80<cr>
 let mapleader=" "
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
-nnoremap <Leader>x :x<cr>
-nnoremap <Leader>o :Explore<cr>
+nnoremap <Leader>1 :x<cr>
+nnoremap <Leader>e :Explore<cr>
+nnoremap <Leader>o :Vexplore<cr>
+nnoremap <Leader>Q :q!<cr>
 " Set mouse on
 set mouse=a

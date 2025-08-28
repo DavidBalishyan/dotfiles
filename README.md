@@ -14,11 +14,10 @@ curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/z
 ```
 ## Neovim
 ```bash
-git clone https://github.com/DavidBalishyan/LazyVim.git > ~/.config/nvim
+git clone https://github.com/DavidBalishyan/nvim.git ~/.config/nvim
 ```
-<strong>Note:</strong> I don't use this neovim config anymore, check out my new config [here](https://github.com/DavidBalishyan/LazyVim)
-
+<strong>Note:</strong> I have a seperate repository for my neovim config 
 ## Vim
 ```bash
-curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/vim/.vimrc ~/.vimrc
+curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/init.vim ~/.vimrc
 ```
