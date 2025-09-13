@@ -1,5 +1,5 @@
-" Enable nmbered lines
-set number
+" Enable numbered lines
+set nu
 set rnu
 " Tab config
 set tabstop=2
@@ -20,8 +20,6 @@ set statusline+=\ %#SLBufNumber#
 set statusline+=\ BN:\ %n
 set statusline+=\ %#SLLineNumber#
 set statusline+=\ LN:\ %l
-" Enable wrapping
-set wrap
 " Set the right encoding
 set encoding=utf-8
 " Enable syntax highlighting
@@ -33,9 +31,9 @@ set smartindent
 set termguicolors
 colo habamax
 " Keymaps
+let mapleader=" "
 nnoremap <Leader>cc :set colorcolumn=80<cr>
 nnoremap <Leader>ncc :set colorcolumn-=80<cr>
-let mapleader=" "
 nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <Leader>1 :x<cr>
