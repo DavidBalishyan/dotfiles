@@ -8,7 +8,7 @@
 
 # ------------------------------------------------------------------------------------------------
 #                                         Getting the resources
-curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/zsh/.zshrc > ~/.zshrc
+curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/.zshrc > ~/.zshrc
 git clone https://github.com/DavidBalishyan/ohmyzsh.git ~/.oh-my-zsh/ # ohMyZsh + p10k
 # ------------------------------------------------------------------------------------------------
 
