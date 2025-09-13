@@ -1,5 +1,5 @@
 " Enable nmbered lines
-set nu
+set number
 set rnu
 " Tab config
 set tabstop=2

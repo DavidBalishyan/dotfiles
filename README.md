@@ -6,7 +6,7 @@ All of my config files in one github repo
 How to install sertain tools with this configs
 ## Tmux
 ```bash
-curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/tmux/setup-tmux.sh | bash
+curl https://raw.githubusercontent.com/DavidBalishyan/dotfiles/refs/heads/main/setup-tmux.sh | bash
 ```
 ## ZSH
 ```bash
