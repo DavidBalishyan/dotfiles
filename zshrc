@@ -4,7 +4,7 @@
 # Oh My ZSH: https://github.com/ohmyzsh/ohmyzsh
 # Powerlevel10k: https://github.com/romkatv/powerlevel10k
 # Creator: https://github.com/DavidBalishyan
-# Github repo: <link>
+# Github repo: https://github.com/DavidBalishyan/dotfiles
 # --------------------------------------------------------------------------------------------------------------------------------
 
 
