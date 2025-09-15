@@ -43,6 +43,7 @@ alias bfetch="betterfetch"
 alias vim="nvim"
 alias myip="curl https://ipecho.net/plain ; echo"
 alias cat="bat -pn"
+alias t="tmux"
 # --------------------------------------------------------------------------------------------------------------------------------
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
