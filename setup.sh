@@ -33,6 +33,16 @@ else
     echo -e "${RED}tmux is not installed.${RESET}"
 fi
 
+
+
+if command -v zsh >/dev/null 2>&1; then
+    echo -e "${GREEN}zsh is installed at:${RESET} $(command -v zsh)"
+    ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
+else
+    echo -e "${RED}zsh is not installed.${RESET}"
+fi
+
+
 echo -e "${YELLOW}Done...${RESET}"
 echo -e "${BLUE}NOTE:${RESET} if you are using Neovim, also might want to try out https://github.com/DavidBalishyan/nvim"
 

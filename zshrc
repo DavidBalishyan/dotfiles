@@ -1,5 +1,4 @@
-# --------------------------------------------------------------------------------------------------------------------------------
-# This config uses Oh My ZSH and PowerLevel10k
+# -------------------------------------------------------------------------------------------------------------------------------- This config uses Oh My ZSH and PowerLevel10k
 # Made on ZSH 5.9 and Debian 13
 # Oh My ZSH: https://github.com/ohmyzsh/ohmyzsh
 # Powerlevel10k: https://github.com/romkatv/powerlevel10k
