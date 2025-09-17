@@ -51,7 +51,8 @@ alias top="btop"
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # Added by betterfetch installer
-export PATH="/home/david/.cargo/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 eval "$(zoxide init zsh)"
 
