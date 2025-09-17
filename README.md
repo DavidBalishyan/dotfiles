@@ -114,12 +114,12 @@ Here’s what gets installed when you run `brew bundle`:
 
 - Configs are tailored for Linux.  
 - `Brewfile` makes it easy to bootstrap a system with the same packages.  
-- Some configs depend on CLI tools (`fzf`, `ripgrep`, `bat`, etc.) — all included in the `Brewfile`.  
+- Some configs depend on CLI tools (`fzf`, `ripgrep`, `bat`, etc.) - all included in the `Brewfile`.  
 - **Also try my Neovim config: [DavidBalishyan/nvim](https://github.com/DavidBalishyan/nvim)**
 
 ---
 
 ## License
 
-MIT License — use and adapt freely.
+MIT License - use and adapt freely.
 
