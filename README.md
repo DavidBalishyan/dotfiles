@@ -11,11 +11,12 @@ It also includes a `Brewfile` for installing essential packages with [Homebrew o
 
 | File / Folder        | Purpose |
 |----------------------|---------|
+| `init.vim`           | Vim configuration. |
+| `nvim/`              | Neovim configuration. |
 | `emacs.el`           | Main Emacs(the worst text editor of all time) configuration. |
 | `emacs.custom.el`    | Custom Emacs(the worst text editor of all time) settings (auto-generated or local tweaks). |
-| `init.vim`           | Vim configuration. |
-| `.zshrc`             | Zsh shell configuration. |
-| `.tmux.conf`         | tmux multiplexer configuration. |
+| `zshrc`             | Zsh shell configuration. |
+| `tmux.conf`         | tmux multiplexer configuration. |
 | `Brewfile`           | List of packages to install with Homebrew. |
 | `setup.sh`           | Script to symlink configs and set up the environment. |
 
@@ -29,7 +30,8 @@ It also includes a `Brewfile` for installing essential packages with [Homebrew o
 - Optional tools you’ll probably want:  
   - Zsh  
   - tmux  
-  - Neovim / Vim  
+  - Vim  
+  - Neovim
   - Emacs  
 
 ---
@@ -52,9 +54,10 @@ brew bundle
 Back up old configs if needed:
 
 ```bash
-mv ~/.zshrc ~/.zshrc.backup
-mv ~/.tmux.conf ~/.tmux.conf.backup
-mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.backup
+mv ~/.zshrc ~/.zshrc.bak
+mv ~/.tmux.conf ~/.tmux.conf.bak
+mv ~/.vimrc ~/.vimrc.bak
+mv ~/.config/nvim ~/.config/nvim.bak
 ```
 
 Run the setup script (creates symlinks):
@@ -103,11 +106,11 @@ Here’s what gets installed when you run `brew bundle`:
 
 ## Usage & Customization
 
-- **Emacs** -> put overrides in `emacs.custom.el`  
-- **Vim** -> edit `init.vim` for plugins and settings  
+- **Emacs** -> put overrides in `emacs.el`  
+- **Vim** -> edit `init.vim` for settings  
 - **Zsh** -> add aliases/functions in `zshrc`  
 - **tmux** -> tweak keybindings in `tmux.conf`  
-- **Neovim** -> [DavidBalishyan/nvim](https://github.com/DavidBalishyan/nvim)
+- **Neovim** -> Change config in `nvim/`
 ---
 
 ## Notes
@@ -115,7 +118,6 @@ Here’s what gets installed when you run `brew bundle`:
 - Configs are tailored for Linux.  
 - `Brewfile` makes it easy to bootstrap a system with the same packages.  
 - Some configs depend on CLI tools (`fzf`, `ripgrep`, `bat`, etc.) - all included in the `Brewfile`.  
-- **Also try my Neovim config: [DavidBalishyan/nvim](https://github.com/DavidBalishyan/nvim)**
 
 ---
 
