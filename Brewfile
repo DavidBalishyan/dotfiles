@@ -1,6 +1,6 @@
 # WARNING: look at this file before running it on your local machine
 # WARNING: To run this file, you need to have brew(homebrew) installed
-# NOTE: use `brew bundle --file $(pwd)/Brewfile` to run the file
+# NOTE: use `brew bundle` to run the file
 
 # --- Editors ---
 brew "neovim"
@@ -21,7 +21,8 @@ brew "rustup-init" # Rust toolchain installer
 brew "node"        # nodejs
 brew "nvm"         # A version manager for nodejs
 brew "python@3.12" # gives python3 & pip3
-# TODO: Add golang and deno
+brew "deno"
+brew "go"
 
 # --- File navigation & search ---
 brew "ripgrep"     # fast grep alternative

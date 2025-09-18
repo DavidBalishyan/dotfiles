@@ -34,7 +34,7 @@ else
 fi
 
 
-
+# zsh
 if command -v zsh >/dev/null 2>&1; then
     echo -e "${GREEN}zsh is installed at:${RESET} $(command -v zsh)"
     ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
