@@ -1,2 +1,5 @@
 *.el linguist-detectable=true
 *.el linguist-language=Emacs Lisp
+
+*.lua linguist-detectable=true
+*.lua linguist-language=lua
