@@ -46,12 +46,21 @@ fi
 # Neovim
 if command -v nvim >/dev/null 2>&1; then
     echo -e "${GREEN}nvim is installed at:${RESET} $(command -v nvim)"
+    mkdir -p "$HOME/.config/nvim"
     ln -s "$(pwd)/nvim" "$HOME/.config/nvim"
 else
     echo -e "${RED}nvim is not installed.${RESET}"
 fi
 
+# Alacritty
+if command -v alacritty >/dev/null 2>&1; then
+    echo -e "${GREEN}alacritty is installed at:${RESET} $(command -v alacritty)"
+    mkdir -p "$HOME/.config/alacritty"
+    ln -s "$(pwd)/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+else
+    echo -e "${RED}alacritty is not installed.${RESET}"
+fi
+
 
 echo -e "${YELLOW}Done...${RESET}"
-echo -e "${BLUE}NOTE:${RESET} if you are using Neovim, also might want to try out https://github.com/DavidBalishyan/nvim"
 

@@ -21,8 +21,8 @@ fi
 # 																									General configs
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
+# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="robbyrussell"
 # --------------------------------------------------------------------------------------------------------------------------------
 plugins=(
 	git
@@ -61,3 +61,5 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   export NVM_DIR="$HOME/.nvm"
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
+
+export PATH="$HOME/.local/bin:$PATH"
