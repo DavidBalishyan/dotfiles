@@ -5,8 +5,11 @@
 # Powerlevel10k: https://github.com/romkatv/powerlevel10k
 # Creator: https://github.com/DavidBalishyan
 # Github repo: https://github.com/DavidBalishyan/dotfiles
-# --------------------------------------------------------------------------------------------------------------------------------
 
+# -------------------------------------------------------------------------------------------------------------------------------- 
+
+# Just to show a nice fetch app when logged into the terminal
+betterfetch
 
 # ---------------------------------------------------------------------------------------------------------------------------
 #	  																	 Enable Powerlevel10k instant prompt. 
@@ -23,6 +26,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_THEME="robbyrussell"
+
 # --------------------------------------------------------------------------------------------------------------------------------
 plugins=(
 	git
@@ -58,8 +62,20 @@ eval "$(zoxide init zsh)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+
+
+# pnpm
+export PNPM_HOME="/home/david/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
