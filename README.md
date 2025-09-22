@@ -1,4 +1,4 @@
->[!NOTE]
+>[!WARNING]
 >This Readme can be outdated and my config can grow more. So you might look at the files yourself
 # Dotfiles
 
