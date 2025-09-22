@@ -8,8 +8,6 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------- 
 
-# Just to show a nice fetch app when logged into the terminal
-betterfetch
 
 # ---------------------------------------------------------------------------------------------------------------------------
 #	  																	 Enable Powerlevel10k instant prompt. 
@@ -58,7 +56,6 @@ alias top="btop"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
-eval "$(zoxide init zsh)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -79,3 +76,9 @@ esac
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+
+
+# Just to show a nice fetch app when logged into the terminal
+betterfetch
+
+eval "$(zoxide init zsh)"
