@@ -82,3 +82,5 @@ esac
 betterfetch
 
 eval "$(zoxide init zsh)"
+export PATH="/home/david/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"

@@ -61,6 +61,14 @@ else
     echo -e "${RED}alacritty is not installed.${RESET}"
 fi
 
+# Ghostty
+if command -v ghostty >/dev/null 2>&1; then
+    echo -e "${GREEN}ghostty is installed at:${RESET} $(command -v ghostty)"
+    mkdir -p "$HOME/.config/ghostty"
+    ln -s "$(pwd)/ghostty-config" "$HOME/.config/ghostty/config"
+else
+    echo -e "${RED}ghostty is not installed.${RESET}"
+fi
 
 echo -e "${YELLOW}Done...${RESET}"
 
