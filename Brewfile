@@ -2,21 +2,23 @@
 # WARNING: To run this file, you need to have brew(homebrew) installed
 # NOTE: use `brew bundle` to run the file
 
+# I usually build most of these apps from source, this might not work well
+
 # --- Editors ---
-brew "neovim"
-brew "vim"
+# brew "neovim"
+# brew "vim"
 
 # --- Networking & transfers ---
-brew "curl"
-brew "wget"
+# brew "curl"
+# brew "wget"
 brew "httpie"
 brew "openssh"
 
 # --- Version control ---
-brew "git"
+# brew "git"
 
 # --- Compilers & languages ---
-brew "gcc"         # gcc, g++, cc
+# brew "gcc"         # gcc, g++, cc
 brew "rustup-init" # Rust toolchain installer
 brew "node"        # nodejs
 brew "nvm"         # A version manager for nodejs
@@ -51,7 +53,4 @@ brew "yq"          # YAML processor
 brew "gnupg"
 brew "openssl@3"
 
-# --- Misc essentials ---
-brew "make"
-brew "cmake"
 
