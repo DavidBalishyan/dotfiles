@@ -8,12 +8,12 @@
 
 # -------------------------------------------------------------------------------------------------------------------------------- 
 
-
+# I don't need instant prompt
 # ---------------------------------------------------------------------------------------------------------------------------
 #	  																	 Enable Powerlevel10k instant prompt. 
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 # Code, that requires input, should go on top of this.
 # Everything else may go below
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -22,8 +22,8 @@ fi
 # 																									General configs
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-# ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="robbyrussell"
 
 # --------------------------------------------------------------------------------------------------------------------------------
 plugins=(
@@ -76,6 +76,9 @@ esac
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
   [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
+
+
+export PATH=/home/david/.nimble/bin:$PATH
 
 
 # Just to show a nice fetch app when logged into the terminal
