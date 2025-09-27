@@ -70,4 +70,21 @@ else
     echo -e "${RED}ghostty is not installed.${RESET}"
 fi
 
+# betterfetch
+if command -v betterfetch >/dev/null 2>&1; then
+    echo -e "${GREEN}betterfetch is installed at:${RESET} $(command -v betterfetch)"
+    mkdir -p "$HOME/.config/betterfetch/"
+    ln -s "$(pwd)/betterfetch.toml" "$HOME/.config/betterfetch/config.toml"
+else
+    echo -e "${RED}betterfetch is not installed.${RESET}"
+fi
+
+# conda
+if command -v conda >/dev/null 2>&1; then
+    echo -e "${GREEN}conda is installed at:${RESET} $(command -v conda)"
+    ln -s "$(pwd)/condarc" "$HOME/.condarc"
+else
+    echo -e "${RED}conda is not installed.${RESET}"
+fi
+
 echo -e "${YELLOW}Done...${RESET}"

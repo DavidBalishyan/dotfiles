@@ -84,6 +84,24 @@ export PATH=/home/david/.nimble/bin:$PATH
 # Just to show a nice fetch app when logged into the terminal
 betterfetch
 
+
 eval "$(zoxide init zsh)"
+
 export PATH="/home/david/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/david/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/david/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/david/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/david/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
