@@ -13,7 +13,6 @@ if [ -f /etc/debian_version ]; then
     sudo apt install -y \
         build-essential gcc g++ make cmake \
         git curl wget pkg-config \
-        autoconf \
         gdb manpages-dev strace lsof \
         vim
 
@@ -23,7 +22,6 @@ elif [ -f /etc/arch-release ]; then
     sudo pacman -S --noconfirm \
         base-devel gcc make cmake \
         git curl wget pkgconf \
-        autoconf \
         gdb man-db strace lsof \
         vim
 
@@ -33,7 +31,6 @@ elif [ -f /etc/void-release ] || grep -qi 'void' /etc/os-release 2>/dev/null; th
     sudo xbps-install -y \
         base-devel gcc make cmake \
         git curl wget pkg-config \
-        autoconf  \
         gdb man-pages strace lsof \
         vim
 

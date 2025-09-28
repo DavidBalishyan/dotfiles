@@ -32,6 +32,7 @@ plugins=(
 	zsh-plugin-rust
 	you-should-use
 	zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 # Source the oh-my-zsh activation script
