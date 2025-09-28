@@ -70,6 +70,14 @@ else
     echo -e "${RED}ghostty is not installed.${RESET}"
 fi
 
+# Wezterm
+if command -v wezterm >/dev/null 2>&1; then
+    echo -e "${GREEN}wezterm is installed at:${RESET} $(command -v wezterm)"
+    ln -s "$(pwd)/wezterm.lua" "$HOME/.wezterm.lua"
+else
+    echo -e "${RED}wezterm is not installed.${RESET}"
+fi
+
 # betterfetch
 if command -v betterfetch >/dev/null 2>&1; then
     echo -e "${GREEN}betterfetch is installed at:${RESET} $(command -v betterfetch)"
