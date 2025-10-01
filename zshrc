@@ -24,8 +24,8 @@
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # ZSH_THEME="robbyrussell"
-
 # --------------------------------------------------------------------------------------------------------------------------------
+
 plugins=(
 	git
 	tmux
@@ -53,17 +53,21 @@ alias top="btop"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # --------------------------------------------------------------------------------------------------------------------------------
-# Added by betterfetch installer
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="/home/david/.nimble/bin:$PATH"
+export PATH="/home/david/.config/herd-lite/bin:$PATH"
+export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
+# --------------------------------------------------------------------------------------------------------------------------------
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(zoxide init zsh)"
+eval "$(fzf --zsh)"
+eval "$(thefuck --alias fk)"
 
-
-export PATH="$HOME/.local/bin:$PATH"
-
-
+# --------------------------------------------------------------------------------------------------------------------------------
 
 # pnpm
 export PNPM_HOME="/home/david/.local/share/pnpm"
@@ -73,23 +77,9 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
-
-
-export PATH=/home/david/.nimble/bin:$PATH
-
-
-# Just to show a nice fetch app when logged into the terminal
-betterfetch
-
-
-eval "$(zoxide init zsh)"
-
-export PATH="/home/david/.config/herd-lite/bin:$PATH"
-export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+export NVM_DIR="$HOME/.nvm"
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -106,3 +96,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+
+# Just to show a nice fetch app when logged into the terminal
+betterfetch
