@@ -65,6 +65,7 @@ export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
+eval "$(thefuck --alias)"
 eval "$(thefuck --alias fk)"
 
 # --------------------------------------------------------------------------------------------------------------------------------
@@ -99,3 +100,4 @@ unset __conda_setup
 
 # Just to show a nice fetch app when logged into the terminal
 betterfetch
+
