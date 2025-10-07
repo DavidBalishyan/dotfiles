@@ -40,7 +40,7 @@ source $ZSH/oh-my-zsh.sh
 
 # To see a full list of active aliases run `alias`
 alias reload="exec zsh"
-alias ls="eza --icons"
+alias ls="eza --git --icons"
 alias bfetch="betterfetch"
 alias vim="nvim"
 alias myip="curl https://ipecho.net/plain ; echo"

@@ -25,7 +25,7 @@ return {
     }
 
     -- Footer
-    dashboard.section.footer.val = 'NVIM v0.11.2'
+    -- dashboard.section.footer.val = 'NVIM v0.11.2'
 
     alpha.setup(dashboard.config)
   end,
