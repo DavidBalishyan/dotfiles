@@ -47,6 +47,7 @@ alias myip="curl https://ipecho.net/plain ; echo"
 alias cat="bat -pn"
 alias t="tmux"
 alias top="btop"
+alias shck="shellcheck"
 # --------------------------------------------------------------------------------------------------------------------------------
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
