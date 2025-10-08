@@ -26,8 +26,7 @@ fi
 # tmux
 if command -v tmux >/dev/null 2>&1; then
     echo -e "${GREEN}tmux is installed at:${RESET} $(command -v tmux)"
-    mkdir -p "$HOME/.config/tmux"
-    ln -s "$(pwd)/tmux.conf" "$HOME/.config/tmux/tmux.conf"
+    ln -s "$(pwd)/tmux.conf" "$HOME/.tmux.conf"
 else
     echo -e "${RED}tmux is not installed.${RESET}"
 fi

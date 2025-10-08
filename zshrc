@@ -28,7 +28,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
 	git
-	tmux
+	# tmux
 	zsh-plugin-rust
 	you-should-use
 	zsh-autosuggestions
