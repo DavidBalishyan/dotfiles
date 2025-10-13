@@ -1,34 +1,45 @@
+# -------------------------------------------------------------------------------------------------------------------------------- 
+# This config uses Oh My ZSH and PowerLevel10k
+# Made on ZSH 5.9 and Debian 13
+# Oh My ZSH: https://github.com/ohmyzsh/ohmyzsh
+# Powerlevel10k: https://github.com/romkatv/powerlevel10k
+# Creator: https://github.com/DavidBalishyan
+# Github repo: https://github.com/DavidBalishyan/dotfiles
+
+# -------------------------------------------------------------------------------------------------------------------------------- 
+
+# I don't need instant prompt
+# ---------------------------------------------------------------------------------------------------------------------------
+#	  																	 Enable Powerlevel10k instant prompt. 
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  # source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
+# Code, that requires input, should go on top of this.
+# Everything else may go below
 # --------------------------------------------------------------------------------------------------------------------------------
-export ZSH_HOME="$HOME/.zsh"
-export HISTFILE=~/.zsh_history
-export HISTSIZE=5000
-export SAVEHIST=5000
-ZSH_PLUGINS="$ZSH_HOME/plugins"
-
-setopt autocd
-setopt hist_ignore_all_dups
-setopt share_history
-# --------------------------------------------------------------------------------------------------------------------------------
-# enbale vi mode and init starship prompt
-bindkey -v
-eval "$(starship init zsh)"
-
-
-source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
-source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
-source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
 
 # --------------------------------------------------------------------------------------------------------------------------------
+# 																									General configs
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="robbyrussell"
+# --------------------------------------------------------------------------------------------------------------------------------
+
+plugins=(
+	git
+	zsh-plugin-rust
+	you-should-use
+	zsh-autosuggestions
+  zsh-syntax-highlighting
+)
+
+# Source the oh-my-zsh activation script
+source $ZSH/oh-my-zsh.sh
+
 # To see a full list of active aliases run `alias`
-alias ...="../.."
-alias _="sudo"
 alias reload="exec zsh"
 alias ls="eza --git --icons"
-alias g="git"
-alias gc="git commit"
-alias gp="git push"
-alias gst="git status"
 alias bfetch="betterfetch"
 alias vim="nvim"
 alias myip="curl https://ipecho.net/plain ; echo"
@@ -38,22 +49,30 @@ alias top="btop"
 alias shck="shellcheck"
 alias cls="clear -x"
 # --------------------------------------------------------------------------------------------------------------------------------
-# Path and Environment
-export PATH="$HOME/.local/bin:$PATH"
-export EDITOR="nvim"
+# enable vi mode
+set -o vi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# --------------------------------------------------------------------------------------------------------------------------------
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/david/.nimble/bin:$PATH"
 export PATH="/home/david/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
 # --------------------------------------------------------------------------------------------------------------------------------
+
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 eval "$(thefuck --alias fk)"
+
 # --------------------------------------------------------------------------------------------------------------------------------
+
 # pnpm
 export PNPM_HOME="/home/david/.local/share/pnpm"
 case ":$PATH:" in

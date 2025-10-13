@@ -4,7 +4,7 @@ echo "This action requires your sudo password"
 
 echo "Cloning Neovim repository..."
 git clone https://github.com/neovim/neovim.git
-cd neovim
+cd neovim || exit
 
 echo "Building Neovim..."
 make CMAKE_BUILD_TYPE=Release

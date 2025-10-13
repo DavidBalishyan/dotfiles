@@ -1,0 +1,63 @@
+format = """
+[╭─](bold #7aa2f7)$username$hostname$directory$git_branch$git_status$cmd_duration$nodejs$rust$python
+[╰─](bold #7aa2f7)❯ $character
+"""
+
+add_newline = false
+
+[character]
+success_symbol = "[❯](bold #9ece6a)"
+error_symbol = "[❯](bold #f7768e)"
+vicmd_symbol = "[❮](bold #7aa2f7)"
+
+[username]
+style_user = "bold #7dcfff"
+style_root = "bold #f7768e"
+format = "[$user]($style)"
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "bold #bb9af7"
+format = "[@$hostname]($style) "
+
+[directory]
+style = "bold #e0af68"
+format = "[$path]($style) "
+truncation_length = 3
+truncate_to_repo = false
+
+[git_branch]
+symbol = " "
+style = "bold #7aa2f7"
+format = "on [$symbol$branch]($style) "
+
+[git_status]
+style = "bold #e0af68"
+format = '([$all_status$ahead_behind]($style) )'
+
+[cmd_duration]
+min_time = 1500
+format = "took [$duration](bold #9ece6a) "
+
+[nodejs]
+symbol = " "
+style = "bold #9ece6a"
+format = "via [$symbol$version]($style) "
+
+[rust]
+symbol = "🦀 "
+style = "bold #ff9e64"
+format = "via [$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "bold #9ece6a"
+format = "via [$symbol$version]($style) "
+
+[time]
+disabled = false
+format = "[$time](bold #565f89) "
+time_format = "%R"
+
+

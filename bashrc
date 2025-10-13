@@ -53,19 +53,11 @@ unset color_prompt force_color_prompt
 #    ;;
 #esac
 
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-		alias grep='grep --color=auto'
-fi
 
 # colored GCC warnings and errors
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
 
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -74,6 +66,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# source the bash_aliases file if it exists
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+
+# starship init bash
+eval -- "$(/usr/local/bin/starship init bash --print-full-init)"
 
 # Added by betterfetch installer
 export PATH="/home/david/.cargo/bin:$PATH"
@@ -92,4 +93,8 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+if is_installed zoxide; then
+	eval "$(zoxide init bash)"
+fi
 
