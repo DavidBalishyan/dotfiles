@@ -9,10 +9,17 @@ setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
 # --------------------------------------------------------------------------------------------------------------------------------
-# enbale vi mode and init starship prompt
+# enbale vi mode
 bindkey -v
+
+# Starship
 eval "$(starship init zsh)"
 
+# ------------------pure prompt-------------------------------
+# fpath+=($ZSH_HOME/pure)
+# autoload -U promptinit; promptinit
+# prompt pure
+# ------------------------------------------------------------
 
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
@@ -23,6 +30,7 @@ source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
 # To see a full list of active aliases run `alias`
 alias ...="../.."
 alias _="sudo"
+alias suod="sudo"
 alias reload="exec zsh"
 alias ls="eza --git --icons"
 alias g="git"
@@ -39,6 +47,7 @@ alias shck="shellcheck"
 alias cls="clear -x"
 alias la="ls -la"
 alias ll="ls -l"
+alias l="ls -a"
 # --------------------------------------------------------------------------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"
