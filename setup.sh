@@ -93,4 +93,14 @@ else
     echo -e "${RED}conda is not installed.${RESET}"
 fi
 
+
+
+# starship
+if command -v starship >/dev/null 2>&1; then
+    echo -e "${GREEN}starship is installed at:${RESET} $(command -v starship)"
+		ln -s "$(pwd)/starship.toml" "$HOME/.config/starship.toml"
+else
+    echo -e "${RED}starship is not installed.${RESET}"
+fi
+
 echo -e "${YELLOW}Done...${RESET}"

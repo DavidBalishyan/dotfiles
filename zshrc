@@ -37,6 +37,8 @@ alias t="tmux"
 alias top="btop"
 alias shck="shellcheck"
 alias cls="clear -x"
+alias la="ls -la"
+alias ll="ls -l"
 # --------------------------------------------------------------------------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"
