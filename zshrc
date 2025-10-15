@@ -25,6 +25,7 @@ source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
 source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
+source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
 
 # --------------------------------------------------------------------------------------------------------------------------------
 # To see a full list of active aliases run `alias`

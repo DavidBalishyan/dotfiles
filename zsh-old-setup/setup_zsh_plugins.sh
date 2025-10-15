@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # -------------------------------------------------------------------------------------------------------------------------------- 
-#                                           Pluigins list
+#                                           Plugins list
 # - git, tmux (built into ohmyzsh) 
 # - zsh-plugin-rust [https://github.com/betterfetch/zsh-plugin-rust] 
 # - you-should-use [https://github.com/MichaelAquilina/zsh-you-should-use]
