@@ -1,11 +1,19 @@
 local wezterm = require("wezterm")
 local config = wezterm.config_builder()
 
-config.color_scheme = "Tokyo Night"
-
-config.font = wezterm.font("JetBrainsMono Nerd Font")
-config.font_size = 14
-
-config.enable_tab_bar = false
+config = {
+	window_padding = {
+		left = 0,
+		right = 0,
+		top = 0,
+		bottom = 0,
+	},
+	automatically_reload_config = true,
+	enable_tab_bar = false,
+	window_close_confirmation = "NeverPrompt",
+	color_scheme = "Tokyo Night",
+	font = wezterm.font("JetBrainsMono Nerd Font"),
+	font_size = 15,
+}
 
 return config
