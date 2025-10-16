@@ -4,7 +4,7 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
 export SAVEHIST=5000
 ZSH_PLUGINS="$ZSH_HOME/plugins"
-
+ZSH_THEMES="$ZSH_HOME/themes"
 setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
@@ -16,11 +16,15 @@ bindkey -v
 eval "$(starship init zsh)"
 
 # ------------------pure prompt-------------------------------
-# fpath+=($ZSH_HOME/pure)
+# fpath+=($ZSH_THEMES/pure)
 # autoload -U promptinit; promptinit
 # prompt pure
-# ------------------------------------------------------------
+# ------------------powerlevel10k-------------------------------
+# source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
 
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# ------------------------------------------------------------
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
