@@ -39,6 +39,12 @@ format = '([$all_status$ahead_behind]($style) )'
 [cmd_duration]
 min_time = 1500
 format = "took [$duration](bold #9ece6a) "
+# -----------programming languages-------------------------
+# Not every programming language I use is included here
+[c]
+symbol = " "
+style = "bold #9ece6a"
+format = "via [$symbol$version]($style) "
 
 [nodejs]
 symbol = " "
@@ -54,6 +60,7 @@ format = "via [$symbol$version]($style) "
 symbol = " "
 style = "bold #9ece6a"
 format = "via [$symbol$version]($style) "
+# ---------------------------------------------------------
 
 [time]
 disabled = false

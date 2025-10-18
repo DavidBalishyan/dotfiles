@@ -1,4 +1,4 @@
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 export ZSH_HOME="$HOME/.zsh"
 export HISTFILE=~/.zsh_history
 export HISTSIZE=5000
@@ -8,7 +8,7 @@ ZSH_THEMES="$ZSH_HOME/themes"
 setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 # enbale vi mode
 bindkey -v
 
@@ -19,7 +19,7 @@ eval "$(starship init zsh)"
 # fpath+=($ZSH_THEMES/pure)
 # autoload -U promptinit; promptinit
 # prompt pure
-# ------------------powerlevel10k-------------------------------
+# ------------------powerlevel10k-----------------------------
 # source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -31,7 +31,7 @@ source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
 source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
 source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
 
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 # To see a full list of active aliases run `alias`
 alias ...="../.."
 alias _="sudo"
@@ -53,7 +53,7 @@ alias cls="clear -x"
 alias la="ls -la"
 alias ll="ls -l"
 alias l="ls -a"
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"
 export EDITOR="nvim"
@@ -63,13 +63,13 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/david/.nimble/bin:$PATH"
 export PATH="/home/david/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 eval "$(thefuck --alias fk)"
-# --------------------------------------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------
 # pnpm
 export PNPM_HOME="/home/david/.local/share/pnpm"
 case ":$PATH:" in

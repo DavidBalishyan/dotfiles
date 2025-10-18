@@ -71,4 +71,4 @@ main() {
 		echo "Done... Now you can symlink the config file"
 }
 
-main
+main 
