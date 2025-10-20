@@ -38,17 +38,7 @@ ___----             ___------              \
                                    \_____________)
 '''
 
-modules = [
-  "user", 
-  "host",
-  "os", 
-  "cpu",
-  "memory",
-  "disk",
-  "packages"
-]
+modules = ["user", "host", "os", "cpu", "memory", "disk", "packages"]
 
-# [colors]
-# title =  "red"
-
-
+[colors]
+title = "cyan"
