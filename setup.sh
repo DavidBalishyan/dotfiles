@@ -94,7 +94,6 @@ else
 fi
 
 
-
 # starship
 if command -v starship >/dev/null 2>&1; then
     echo -e "${GREEN}starship is installed at:${RESET} $(command -v starship)"
@@ -102,5 +101,15 @@ if command -v starship >/dev/null 2>&1; then
 else
     echo -e "${RED}starship is not installed.${RESET}"
 fi
+
+# fastfetch (useless)
+if command -v fastfetch >/dev/null 2>&1; then
+    echo -e "${GREEN}fastfetch is installed at:${RESET} $(command -v fastfetch)"
+		mkdir -p "$HOME/.config/fastfetch"
+		ln -s "$(pwd)/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc"
+else
+    echo -e "${RED}fastfetch is not installed.${RESET}"
+fi
+
 
 echo -e "${YELLOW}Done...${RESET}"
