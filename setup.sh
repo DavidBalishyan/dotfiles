@@ -44,7 +44,7 @@ fi
 # Neovim (the enhaced best text editor of all time)
 if command -v nvim >/dev/null 2>&1; then
     echo -e "${GREEN}nvim is installed at:${RESET} $(command -v nvim)"
-    # mkdir -p "$HOME/.config/nvim"
+    mkdir -p "$HOME/.config/nvim"
     ln -s "$(pwd)/nvim" "$HOME/.config/nvim"
 else
     echo -e "${RED}nvim is not installed.${RESET}"

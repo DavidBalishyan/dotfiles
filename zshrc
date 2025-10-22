@@ -50,8 +50,8 @@ alias t="tmux"
 alias top="btop"
 alias shck="shellcheck"
 alias cls="clear -x"
-alias la="ls -la"
-alias ll="ls -l"
+alias la="ls -lha"
+alias ll="ls -lh"
 alias l="ls -a"
 # ------------------------------------------------------------
 # Path and Environment
