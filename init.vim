@@ -30,6 +30,7 @@ set smartindent
 " Colorsceme
 set termguicolors
 colo habamax
+" colo slate
 " Keymaps
 let mapleader=" "
 nnoremap <Leader>cc :set colorcolumn=80<cr>
@@ -40,5 +41,6 @@ nnoremap <Leader>1 :x<cr>
 nnoremap <Leader>e :Explore<cr>
 nnoremap <Leader>o :Vexplore<cr>
 nnoremap <Leader>Q :q!<cr>
+nnoremap <Leader>s :so<cr>
 " Set mouse on
 set mouse=a

@@ -1,0 +1,12 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["sway/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "network", "battery", "tray"],
+  "clock": { "format": "{:%a %b %d  %H:%M}" },
+  "pulseaudio": { "format": "  {volume}%" },
+  "network": { "format-wifi": "  {essid}", "format-ethernet": "  {ipaddr}" },
+  "battery": { "format": "{capacity}%  " }
+}
+

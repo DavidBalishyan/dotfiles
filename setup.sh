@@ -111,5 +111,22 @@ else
     echo -e "${RED}fastfetch is not installed.${RESET}"
 fi
 
+# foot
+if command -v foot >/dev/null 2>&1; then
+    echo -e "${GREEN}foot is installed at:${RESET} $(command -v foot)"
+		mkdir -p "$HOME/.config/foot"
+		ln -s "$(pwd)/foot.ini" "$HOME/.config/foot/foot.ini"
+else
+    echo -e "${RED}foot is not installed.${RESET}"
+fi
+
+# Fish shell
+if command -v fish >/dev/null 2>&1; then
+    echo -e "${GREEN}fish is installed at:${RESET} $(command -v fish)"
+		mkdir -p "$HOME/.config/fish"
+		ln -s "$(pwd)/fish" "$HOME/.config"
+else
+    echo -e "${RED}fish is not installed.${RESET}"
+fi
 
 echo -e "${YELLOW}Done...${RESET}"

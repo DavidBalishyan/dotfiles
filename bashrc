@@ -74,7 +74,7 @@ fi
 
 
 # starship init bash
-eval -- "$(/usr/local/bin/starship init bash --print-full-init)"
+# eval -- "$(/usr/local/bin/starship init bash --print-full-init)"
 
 # Added by betterfetch installer
 export PATH="/home/david/.cargo/bin:$PATH"

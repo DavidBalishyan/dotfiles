@@ -8,23 +8,38 @@ ZSH_THEMES="$ZSH_HOME/themes"
 setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
+
+# check if a command is installed on the system
+is_installed () {
+    command -v "$1" &> /dev/null
+}
+
 # ------------------------------------------------------------
 # enbale vi mode
 bindkey -v
 
+source "$ZSH_THEMES/simple.zsh-theme"
+
 # Starship
-eval "$(starship init zsh)"
+if is_installed starship; then
+	eval "$(starship init zsh)"
+fi
 
 # ------------------pure prompt-------------------------------
-# fpath+=($ZSH_THEMES/pure)
-# autoload -U promptinit; promptinit
-# prompt pure
-# ------------------powerlevel10k-----------------------------
-# source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
+load_pure() {
+	fpath+=($ZSH_THEMES/pure)
+	autoload -U promptinit; promptinit
+	prompt pure
+}
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# ------------------powerlevel10k-----------------------------
+load_p10k() {
+	source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
+	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+}
+
 # ------------------------------------------------------------
+
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
@@ -36,23 +51,43 @@ source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
 alias ...="../.."
 alias _="sudo"
 alias suod="sudo"
-alias reload="exec zsh"
-alias ls="eza --git --icons"
-alias g="git"
-alias gc="git commit"
-alias gp="git push"
-alias gst="git status"
-alias bfetch="betterfetch"
-alias vim="nvim"
 alias myip="curl https://ipecho.net/plain ; echo"
-alias cat="bat -pn"
-alias t="tmux"
-alias top="btop"
-alias shck="shellcheck"
+alias reload="exec zsh"
 alias cls="clear -x"
 alias la="ls -lha"
 alias ll="ls -lh"
 alias l="ls -a"
+alias q="exit"
+alias ls="eza --git --icons"
+
+
+if is_installed git; then
+	alias g="git"
+	alias gc="git commit"
+	alias gp="git push"
+	alias gst="git status"
+	alias ga="git add"
+fi
+
+if is_installed bat; then
+	alias cat="bat -pn"
+fi
+
+if is_installed tmux; then 
+	alias t="tmux"
+fi
+
+if is_installed btop; then
+	alias top="btop"
+fi
+
+if is_installed shellcheck; then
+	alias shck="shellcheck"
+fi
+
+if is_installed nvim; then
+	alias vim="nvim"
+fi
 # ------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"
@@ -63,12 +98,14 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/david/.nimble/bin:$PATH"
 export PATH="/home/david/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
+
 # ------------------------------------------------------------
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 eval "$(thefuck --alias)"
 eval "$(thefuck --alias fk)"
+
 # ------------------------------------------------------------
 # pnpm
 export PNPM_HOME="/home/david/.local/share/pnpm"
@@ -99,5 +136,7 @@ unset __conda_setup
 
 
 # Just to show a nice fetch app when logged into the terminal
-betterfetch
-
+if is_installed betterfetch; then
+	betterfetch
+	alias bfetch="betterfetch"
+fi

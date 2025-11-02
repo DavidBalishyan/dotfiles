@@ -1,7 +1,7 @@
 alias reload="exec bash"
 
 # check if a command is installed on the system
-is_installed() {
+is_installed () {
     command -v "$1" &> /dev/null
 }
 
