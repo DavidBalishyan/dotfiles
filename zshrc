@@ -75,6 +75,16 @@ fi
 
 if is_installed tmux; then 
 	alias t="tmux"
+	# alias att="tmux attach -t $1"
+ tm() {
+  local session="${1:-0}"
+	  if tmux has-session -t "$session" 2>/dev/null; then
+	    tmux attach-session -t "$session"
+	  else
+	    echo "Session '$session' not found. Creating new one..."
+	    tmux new-session -s "$session"
+	  fi
+	}
 fi
 
 if is_installed btop; then
