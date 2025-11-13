@@ -67,4 +67,3 @@ disabled = false
 format = "[$time](bold #565f89) "
 time_format = "%R"
 
-

@@ -1,6 +1,6 @@
 # ------------------------------------------------------------
 export ZSH_HOME="$HOME/.zsh"
-export HISTFILE=~/.zsh_history
+export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=5000
 export SAVEHIST=5000
 ZSH_PLUGINS="$ZSH_HOME/plugins"
@@ -59,7 +59,8 @@ alias ll="ls -lh"
 alias l="ls -a"
 alias q="exit"
 alias ls="eza --git --icons"
-
+alias apt="sudo apt"
+alias df="df -h"
 
 if is_installed git; then
 	alias g="git"
@@ -110,11 +111,11 @@ export PATH="/home/david/.config/herd-lite/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # ------------------------------------------------------------
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias fk)"
+# eval "$(thefuck --alias)"
+# eval "$(thefuck --alias fk)"
 
 # ------------------------------------------------------------
 # pnpm
@@ -125,9 +126,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+. "$HOME/.nvm/nvm.sh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -150,3 +149,7 @@ if is_installed betterfetch; then
 	betterfetch
 	alias bfetch="betterfetch"
 fi
+
+
+# Added by betterfetch installer
+export PATH="/home/david/.cargo/bin:$PATH"

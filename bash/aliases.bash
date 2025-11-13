@@ -1,4 +1,7 @@
+#!/usr/bin/env bash
+
 alias reload="exec bash"
+alias q="exit"
 
 # check if a command is installed on the system
 is_installed () {
