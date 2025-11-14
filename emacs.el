@@ -1,9 +1,9 @@
 (setq custom-file "~/.emacs.custom.el")
 (load custom-file)
 
-(menu-bar-mode 1)
-(tool-bar-mode 1)
-(scroll-bar-mode 1)
+(menu-bar-mode 0)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
 (show-paren-mode 1)
 
 (setq display-line-numbers-type 'relative)
@@ -11,3 +11,6 @@
 
 (require 'evil)
 (evil-mode 1)
+
+(ido-mode 1)
+(ido-everywhere 1)
