@@ -1,0 +1,45 @@
+# Super key
+super = Mod4
+
+# Launch terminal
+super + Return
+    alacritty
+
+# Exit session
+super + shift + q
+    bspc quit
+
+# Close window
+super + q
+    bspc node -c
+
+# Reload sxhkd
+super + Escape
+    pkill -USR1 -x sxhkd
+
+# Move focus
+super + {h,j,k,l}
+    bspc node -f {west,south,north,east}
+
+# Move window
+super + shift + {h,j,k,l}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# Switch workspaces
+super + {1-9}
+    bspc desktop -f ^{1-9}
+
+# Move window to workspace
+super + shift + {1-9}
+    bspc node -d ^{1-9}
+
+super + 0
+    bspc desktop -f 10
+
+super + 0
+    bspc desktop -f 10
+
+
+# rofi
+super + d
+		rofi -show drun

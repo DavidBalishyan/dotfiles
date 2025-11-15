@@ -99,6 +99,9 @@ fi
 if is_installed nvim; then
 	alias vim="nvim"
 fi
+
+# Temporary aliases
+alias fpc="$HOME/fpc-3.2.0/bin/fpc"
 # ------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"

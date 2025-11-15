@@ -1,0 +1,24 @@
+#!/bin/sh
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+# Start compositor (optional)
+picom &
+
+# Wallpaper
+feh --bg-fill $HOME/Pictures/debian-black-4k.png &
+
+# Set border width, gaps
+bspc config border_width        2
+bspc config window_gap          10
+
+# Focus, layout options
+bspc config focus_follows_pointer true
+bspc config split_ratio 0.52
+
+# Monitors
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
+
+# Start polybar
+polybar &
+

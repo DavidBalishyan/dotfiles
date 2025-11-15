@@ -1,11 +1,12 @@
 ### --- Environment ---
 set $mod Mod4
-set $term alacritty
+set $term foot
 set $menu wofi --show drun --prompt "Run: "
+set $wall "$HOME/Pictures/debian-black-4k.png"
 
 ### --- Output / Wallpaper ---
 # output * bg #1a1b26 solid_color
-exec_always swaybg -i $HOME/Pictures/linux_bliss.jpeg -m fill
+exec_always swaybg -i $wall -m fill
 
 bar {
     position top
