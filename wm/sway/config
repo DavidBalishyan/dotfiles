@@ -8,25 +8,26 @@ set $wall "$HOME/Pictures/debian-black-4k.png"
 # output * bg #1a1b26 solid_color
 exec_always swaybg -i $wall -m fill
 
-bar {
-    position top
-    height 24
-    font pango:JetBrainsMono Nerd Font 11
-    colors {
-        background #1a1b26
-        statusline #c0caf5
-        separator  #7aa2f7
-        focused_workspace #7aa2f7 #1a1b26 #c0caf5
-        inactive_workspace #15161e #1a1b26 #a9b1d6
-        urgent_workspace #f7768e #1a1b26 #f7768e
-    }
-}
+# bar {
+#    position top
+#    height 24
+#    font pango:JetBrainsMono Nerd Font 11
+#    colors {
+#        background #1a1b26
+#        statusline #c0caf5
+#        separator  #7aa2f7
+#        focused_workspace #7aa2f7 #1a1b26 #c0caf5
+#        inactive_workspace #15161e #1a1b26 #a9b1d6
+#        urgent_workspace #f7768e #1a1b26 #f7768e
+#    }
+#}
 
 
 ### --- Default apps ---
 exec_always nm-applet --indicator
 exec_always blueman-applet
 exec_always autotiling
+exec_always waybar
 
 ### --- Input ---
 input * {

@@ -6,7 +6,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 picom &
 
 # Wallpaper
-feh --bg-fill $HOME/Pictures/debian-black-4k.png &
+feh --bg-fill $HOME/Pictures/os/debian-black-4k.png &
 
 # Set border width, gaps
 bspc config border_width        2
@@ -21,4 +21,8 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 # Start polybar
 polybar &
+
+xinput list | grep -i touchpad | awk -F'id=' '{print $2}' | cut -f1 -d' ' | while read id; do
+    xinput set-prop "$id" "libinput Natural Scrolling Enabled" 0
+done
 

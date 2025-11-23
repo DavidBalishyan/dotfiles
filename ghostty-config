@@ -29,10 +29,13 @@ selection-foreground = #c0caf5
 
 # Font
 font-family = "JetBrainsMono Nerd Font"
-font-size = 14
+font-size = 15
 
 # Window opacity & padding
 background-opacity = 0.95
 window-padding-x = 6
 window-padding-y = 6
 
+gtk-titlebar=false
+cursor-style-blink = false
+cursor-style = block

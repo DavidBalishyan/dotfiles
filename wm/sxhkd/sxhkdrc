@@ -33,13 +33,19 @@ super + {1-9}
 super + shift + {1-9}
     bspc node -d ^{1-9}
 
+# 10th desktop
 super + 0
     bspc desktop -f 10
 
-super + 0
-    bspc desktop -f 10
-
-
-# rofi
+# rofi (or dmenu)
 super + d
-		rofi -show drun
+   rofi -show drun
+
+super + b
+  			zen
+
+super + x
+			boomer
+
+super + r
+    bspc wm -r

@@ -3,8 +3,9 @@ export ZSH_HOME="$HOME/.zsh"
 export HISTFILE="$HOME/.zsh_history"
 export HISTSIZE=5000
 export SAVEHIST=5000
-ZSH_PLUGINS="$ZSH_HOME/plugins"
-ZSH_THEMES="$ZSH_HOME/themes"
+export ZSH_PLUGINS="$ZSH_HOME/plugins"
+export ZSH_THEMES="$ZSH_HOME/themes"
+export TERMINAL="alacritty"
 setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
@@ -61,6 +62,7 @@ alias q="exit"
 alias ls="eza --git --icons"
 alias apt="sudo apt"
 alias df="df -h"
+alias off="/sbin/poweroff"
 
 if is_installed git; then
 	alias g="git"
@@ -77,7 +79,7 @@ fi
 if is_installed tmux; then 
 	alias t="tmux"
 	# alias att="tmux attach -t $1"
- tm() {
+tm() {
   local session="${1:-0}"
 	  if tmux has-session -t "$session" 2>/dev/null; then
 	    tmux attach-session -t "$session"
@@ -100,8 +102,6 @@ if is_installed nvim; then
 	alias vim="nvim"
 fi
 
-# Temporary aliases
-alias fpc="$HOME/fpc-3.2.0/bin/fpc"
 # ------------------------------------------------------------
 # Path and Environment
 export PATH="$HOME/.local/bin:$PATH"
@@ -111,10 +111,11 @@ export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/home/david/.nimble/bin:$PATH"
 export PATH="/home/david/.config/herd-lite/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 
 # ------------------------------------------------------------
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
 # eval "$(thefuck --alias)"
@@ -149,10 +150,6 @@ unset __conda_setup
 
 # Just to show a nice fetch app when logged into the terminal
 if is_installed betterfetch; then
-	betterfetch
+  betterfetch
 	alias bfetch="betterfetch"
 fi
-
-
-# Added by betterfetch installer
-export PATH="/home/david/.cargo/bin:$PATH"

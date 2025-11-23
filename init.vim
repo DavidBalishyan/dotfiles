@@ -39,6 +39,7 @@ nnoremap <Leader>w :w<cr>
 nnoremap <Leader>q :q<cr>
 nnoremap <Leader>1 :x<cr>
 nnoremap <Leader>e :Explore<cr>
+nnoremap <Leader>f :F<cr>
 nnoremap <Leader>o :Vexplore<cr>
 nnoremap <Leader>Q :q!<cr>
 nnoremap <Leader>s :so<cr>
