@@ -13,5 +13,4 @@ terminal: "alacritty";
 }
 
 // @theme "gruvbox-dark"
-// @theme "./themes/spotlight.rasi"
 @theme "./themes/nord-dark.rasi"
