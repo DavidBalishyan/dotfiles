@@ -150,6 +150,7 @@ unset __conda_setup
 
 # Just to show a nice fetch app when logged into the terminal
 if is_installed betterfetch; then
-  betterfetch
+	betterfetch
 	alias bfetch="betterfetch"
 fi
+
