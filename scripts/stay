@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # This script requires you to have a global variable named $TERMINAL and it's the name of your default (preferred) terminal
 $TERMINAL -e bash -c "$*; echo -e; tput setaf 5 bold; \

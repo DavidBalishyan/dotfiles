@@ -33,7 +33,7 @@ super + {1-9}
 super + shift + {1-9}
     bspc node -d ^{1-9}
 
-# 10th desktop
+# 10th workspace
 super + 0
     bspc desktop -f 10
 
@@ -42,10 +42,10 @@ super + d
    rofi -show drun
 
 super + b
-  			zen
+      zen
 
 super + x
-			boomer
+      boomer
 
 super + r
     bspc wm -r

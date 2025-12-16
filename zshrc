@@ -9,6 +9,10 @@ export TERMINAL="alacritty"
 setopt autocd
 setopt hist_ignore_all_dups
 setopt share_history
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
 
 # check if a command is installed on the system
 is_installed () {
@@ -41,11 +45,15 @@ load_p10k() {
 
 # ------------------------------------------------------------
 
+fpath=($ZSH_PLUGINS/zsh-completions/src $fpath)
+autoload -U compinit && compinit
+
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
 source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
 source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
+source "$ZSH_PLUGINS/zsh-completions/zsh-completions.plugin.zsh"
 
 # ------------------------------------------------------------
 # To see a full list of active aliases run `alias`
@@ -55,14 +63,15 @@ alias suod="sudo"
 alias myip="curl https://ipecho.net/plain ; echo"
 alias reload="exec zsh"
 alias cls="clear -x"
-alias la="ls -lha"
-alias ll="ls -lh"
+alias la="ls -lhia"
+alias ll="ls -lha"
 alias l="ls -a"
 alias q="exit"
 alias ls="eza --git --icons"
 alias apt="sudo apt"
 alias df="df -h"
 alias off="/sbin/poweroff"
+alias reboot="/sbin/reboot"
 
 if is_installed git; then
 	alias g="git"
@@ -118,8 +127,8 @@ export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-# eval "$(thefuck --alias)"
-# eval "$(thefuck --alias fk)"
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias fk)"
 
 # ------------------------------------------------------------
 # pnpm
@@ -154,3 +163,6 @@ if is_installed betterfetch; then
 	alias bfetch="betterfetch"
 fi
 
+# Also show just the battery using a minimal (configured) version of neofetch
+neofetch --off
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
