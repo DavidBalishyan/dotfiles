@@ -7,6 +7,9 @@ git clone https://github.com/neovim/neovim.git
 cd neovim || exit
 git chekout stable
 
+echo "Installing deps..."
+# sudo apt install cmake ninja-build libtool autoconf automake g++ gettext pkg-config libncurses5-dev libncursesw5-dev libunibilum-dev libvterm-dev	
+
 echo "Building Neovim..."
 make CMAKE_BUILD_TYPE=Release
 

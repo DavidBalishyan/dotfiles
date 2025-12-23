@@ -45,15 +45,15 @@ load_p10k() {
 
 # ------------------------------------------------------------
 
-fpath=($ZSH_PLUGINS/zsh-completions/src $fpath)
-autoload -U compinit && compinit
+# fpath=($ZSH_PLUGINS/zsh-completions/src $fpath)
+# autoload -U compinit && compinit
 
 source "$ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh"
 source "$ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 source "$ZSH_PLUGINS/zsh-you-should-use/you-should-use.plugin.zsh"
 source "$ZSH_PLUGINS/zsh-plugin-rust/zsh-plugin-rust.plugin.zsh"
 source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
-source "$ZSH_PLUGINS/zsh-completions/zsh-completions.plugin.zsh"
+# source "$ZSH_PLUGINS/zsh-completions/zsh-completions.plugin.zsh"
 
 # ------------------------------------------------------------
 # To see a full list of active aliases run `alias`
@@ -127,8 +127,8 @@ export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias fk)"
+# eval "$(thefuck --alias)"
+# eval "$(thefuck --alias fk)"
 
 # ------------------------------------------------------------
 # pnpm
@@ -163,6 +163,4 @@ if is_installed betterfetch; then
 	alias bfetch="betterfetch"
 fi
 
-# Also show just the battery using a minimal (configured) version of neofetch
-neofetch --off
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
