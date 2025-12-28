@@ -68,6 +68,7 @@ alias ll="ls -lha"
 alias l="ls -a"
 alias q="exit"
 alias ls="eza --git --icons"
+alias tree="eza --tree"
 alias apt="sudo apt"
 alias df="df -h"
 alias off="/sbin/poweroff"
@@ -164,3 +165,6 @@ if is_installed betterfetch; then
 fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# Added by betterfetch installer
+export PATH="/home/david/.cargo/bin:$PATH"

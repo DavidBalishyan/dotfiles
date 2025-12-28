@@ -10,7 +10,7 @@ picom &
 
 # Wallpaper
 # feh --bg-fill $HOME/Pictures/debian-black-4k.png &
-feh --bg-fill "$HOME/Pictures/gruvbox/06. Gruvbox Retro.jpg" &
+feh --bg-fill "$HOME/Pictures/wall.jpg" &
 
 # Set border width, gaps
 bspc config border_width        2

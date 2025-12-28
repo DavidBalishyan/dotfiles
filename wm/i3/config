@@ -1,7 +1,7 @@
 set $mod Mod4
 set $term "alacritty"
 set $bar "polybar"
-set $bg "$HOME/Pictures/debian-black-4k.png"
+set $bg "$HOME/Pictures/wall.jpg"
 set $runner "rofi -show drun"
 font pango:monospace 8
 
