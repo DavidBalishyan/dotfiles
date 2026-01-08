@@ -26,7 +26,12 @@ bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 # Start polybar
 polybar &
 
-xinput list | grep -i touchpad | awk -F'id=' '{print $2}' | cut -f1 -d' ' | while read id; do
-    xinput set-prop "$id" "libinput Natural Scrolling Enabled" 0
-done
+# FIXME: Can't turn off natural scroll---------------
 
+# xinput list | grep -i touchpad | awk -F'id=' '{print $2}' | cut -f1 -d' ' | while read id; do
+#    xinput set-prop "$id" "libinput Natural Scrolling Enabled" 0
+# done
+
+# xinput set-prop "ELAN0791:00 04F3:30FD Touchpad" "libinput Natural Scrolling Enabled" 0 &
+# xinput set-prop 14 "libinput Natural Scrolling Enabled" 0 &
+# FIXME: --------------------------------------------

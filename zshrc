@@ -128,8 +128,8 @@ export PHP_INI_SCAN_DIR="/home/david/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-# eval "$(thefuck --alias)"
-# eval "$(thefuck --alias fk)"
+eval "$(thefuck --alias)"
+eval "$(thefuck --alias fk)"
 
 # ------------------------------------------------------------
 # pnpm
@@ -160,11 +160,13 @@ unset __conda_setup
 
 # Just to show a nice fetch app when logged into the terminal
 if is_installed betterfetch; then
-	betterfetch
+	# betterfetch
 	alias bfetch="betterfetch"
+fi
+
+if is_installed namaskar; then
+	namaskar
 fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Added by betterfetch installer
-export PATH="/home/david/.cargo/bin:$PATH"
