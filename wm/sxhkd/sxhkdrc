@@ -49,3 +49,9 @@ super + x
 
 super + r
     bspc wm -r
+
+super + shift + s
+    screenshot 
+
+super + shift + d
+    screenshot full

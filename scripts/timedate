@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+printf "%(%A, %B %e %H:%M)T\\n"
