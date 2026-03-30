@@ -42,7 +42,7 @@ super + d
    rofi -show drun
 
 super + b
-      zen
+      google-chrome
 
 super + x
       boomer
@@ -55,3 +55,6 @@ super + shift + s
 
 super + shift + d
     screenshot full
+
+super + w
+    rofi -show window

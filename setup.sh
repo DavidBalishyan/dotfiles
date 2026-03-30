@@ -129,4 +129,11 @@ else
     echo -e "${RED}fish is not installed.${RESET}"
 fi
 
+# ln -s "$(pwd)/settings.json" "$HOME/.config/Antigravity/User/settings.json"
+# ln -s "$(pwd)/settings.json" "$HOME/.config/Code/User/settings.json"
+
+
+# $HOME/.xinitrc
+ln -s "$(pwd)/xinitrc" "$HOME/.xinitrc"
+
 echo -e "${YELLOW}Done...${RESET}"
