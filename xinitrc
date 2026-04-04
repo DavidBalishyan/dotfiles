@@ -1,1 +1,2 @@
-bspwm
+# $HOME/.xinitrc
+exec bspwm

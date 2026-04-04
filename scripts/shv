@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo "Bash: $BASH_VERSION"
+echo "Zsh: $(zsh --version)"
+echo "Fish: $(fish --version)"

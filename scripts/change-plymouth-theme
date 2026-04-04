@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Plymouth Theme Changer Script
+# Works on Debian-based systems
+
+set -e
+
+# Function to list available themes
+list_themes() {
+    echo "Available Plymouth themes:"
+    sudo plymouth-set-default-theme --list
+}
+
+# Function to set a theme
+set_theme() {
+    THEME="$1"
+    if [ -z "$THEME" ]; then
+        echo "Error: No theme specified."
+        exit 1
+    fi
+    echo "Setting Plymouth theme to: $THEME"
+    sudo plymouth-set-default-theme -R "$THEME"
+    echo "Theme set and initramfs rebuilt."
+}
+
+# Function to update GRUB
+update_grub() {
+    echo "Updating GRUB..."
+    sudo update-grub
+    echo "GRUB updated."
+}
+
+# Function to preview theme
+preview_theme() {
+    echo "Previewing theme..."
+    sudo plymouthd
+    sudo plymouth --show-splash
+    sleep 5
+    sudo plymouth --quit
+    echo "Preview done."
+}
+
+# Main menu
+echo "=== Plymouth Theme Manager ==="
+echo "1) List available themes"
+echo "2) Set a theme"
+echo "3) Preview current theme"
+echo "4) Update GRUB"
+echo "5) Exit"
+read -rp "Choose an option: " CHOICE
+
+case "$CHOICE" in
+    1) list_themes ;;
+    2) 
+        read -rp "Enter theme name: " THEME
+        set_theme "$THEME"
+        ;;
+    3) preview_theme ;;
+    4) update_grub ;;
+    5) exit 0 ;;
+    *) echo "Invalid choice"; exit 1 ;;
+esac
+
+
