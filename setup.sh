@@ -1,139 +1,155 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
 # Colors
 GREEN="\033[0;32m"
-RED="\033[0;31m"
 YELLOW="\033[1;33m"
+RED="\033[0;31m"
 RESET="\033[0m"
 
-# Emacs (the worst text editor)
-if command -v emacs >/dev/null 2>&1; then
-    echo -e "${GREEN}Emacs is installed at:${RESET} $(command -v emacs)"
-    ln -s "$(pwd)/emacs.el" "$HOME/.emacs"
-    ln -s "$(pwd)/emacs.custom.el" "$HOME/.emacs.custom.el"
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+print_info() {
+    printf "%b %s\n" "${GREEN}•${RESET}" "$1"
+}
+
+print_warn() {
+    printf "%b %s\n" "${YELLOW}!${RESET}" "$1"
+}
+
+print_error() {
+    printf "%b %s\n" "${RED}x${RESET}" "$1"
+}
+
+cmd_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+backup_path() {
+    printf "%s.bak.%s" "$1" "$(date +%Y%m%d%H%M%S)"
+}
+
+ensure_parent() {
+    local target="$1"
+    mkdir -p "$(dirname "$target")"
+}
+
+link_dotfile() {
+    local source="$1"
+    local target="$2"
+
+    ensure_parent "$target"
+
+    if [ -L "$target" ]; then
+        local current
+        current="$(readlink "$target")"
+        if [ "$current" = "$source" ]; then
+            print_info "Already linked: $target"
+            return
+        fi
+        mv "$target" "$(backup_path "$target")"
+        print_warn "Backed up existing symlink: $target"
+    elif [ -e "$target" ]; then
+        mv "$target" "$(backup_path "$target")"
+        print_warn "Backed up existing file: $target"
+    fi
+
+    ln -s "$source" "$target"
+    print_info "Linked: $target -> $source"
+}
+
+link_if_installed() {
+    local command_name="$1"
+    local source="$2"
+    local target="$3"
+    local description="$4"
+
+    if cmd_exists "$command_name"; then
+        print_info "$description installed at: $(command -v "$command_name")"
+        link_dotfile "$source" "$target"
+    else
+        print_warn "$description is not installed. Skipping $target"
+    fi
+}
+
+print_info "Starting dotfiles setup in $repo_root"
+
+link_if_installed emacs "$repo_root/emacs.el" "$HOME/.emacs" "Emacs"
+link_if_installed emacs "$repo_root/emacs.custom.el" "$HOME/.emacs.custom.el" "Emacs"
+link_if_installed vim "$repo_root/init.vim" "$HOME/.vimrc" "Vim"
+link_if_installed tmux "$repo_root/tmux.conf" "$HOME/.tmux.conf" "tmux"
+link_if_installed zsh "$repo_root/zshrc" "$HOME/.zshrc" "zsh"
+
+if cmd_exists nvim; then
+    print_info "Neovim installed at: $(command -v nvim)"
+    link_dotfile "$repo_root/nvim" "$HOME/.config/nvim"
 else
-    echo -e "${RED}Emacs is not installed.${RESET}"
+    print_warn "Neovim is not installed. Skipping ~/.config/nvim"
 fi
 
-# Vim (the best text editor)
-if command -v vim >/dev/null 2>&1; then
-    echo -e "${GREEN}Vim is installed at:${RESET} $(command -v vim)"
-    ln -s "$(pwd)/init.vim" "$HOME/.vimrc"
+if cmd_exists alacritty; then
+    print_info "Alacritty installed at: $(command -v alacritty)"
+    link_dotfile "$repo_root/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 else
-    echo -e "${RED}Vim is not installed.${RESET}"
+    print_warn "Alacritty is not installed. Skipping ~/.config/alacritty/alacritty.toml"
 fi
 
-# tmux
-if command -v tmux >/dev/null 2>&1; then
-    echo -e "${GREEN}tmux is installed at:${RESET} $(command -v tmux)"
-    ln -s "$(pwd)/tmux.conf" "$HOME/.tmux.conf"
+if cmd_exists ghostty; then
+    print_info "Ghostty installed at: $(command -v ghostty)"
+    link_dotfile "$repo_root/ghostty-config" "$HOME/.config/ghostty/config"
 else
-    echo -e "${RED}tmux is not installed.${RESET}"
+    print_warn "Ghostty is not installed. Skipping ~/.config/ghostty/config"
 fi
 
-
-# zsh
-if command -v zsh >/dev/null 2>&1; then
-    echo -e "${GREEN}zsh is installed at:${RESET} $(command -v zsh)"
-    ln -s "$(pwd)/zshrc" "$HOME/.zshrc"
+if cmd_exists wezterm; then
+    print_info "Wezterm installed at: $(command -v wezterm)"
+    link_dotfile "$repo_root/wezterm.lua" "$HOME/.wezterm.lua"
 else
-    echo -e "${RED}zsh is not installed.${RESET}"
+    print_warn "Wezterm is not installed. Skipping ~/.wezterm.lua"
 fi
 
-
-# Neovim (the enhaced best text editor of all time)
-if command -v nvim >/dev/null 2>&1; then
-    echo -e "${GREEN}nvim is installed at:${RESET} $(command -v nvim)"
-    mkdir -p "$HOME/.config/nvim"
-    ln -s "$(pwd)/nvim" "$HOME/.config/nvim"
+if cmd_exists betterfetch; then
+    print_info "betterfetch installed at: $(command -v betterfetch)"
+    link_dotfile "$repo_root/betterfetch.toml" "$HOME/.config/betterfetch/config.toml"
 else
-    echo -e "${RED}nvim is not installed.${RESET}"
+    print_warn "betterfetch is not installed. Skipping ~/.config/betterfetch/config.toml"
 fi
 
-# Alacritty
-if command -v alacritty >/dev/null 2>&1; then
-    echo -e "${GREEN}alacritty is installed at:${RESET} $(command -v alacritty)"
-    mkdir -p "$HOME/.config/alacritty"
-    ln -s "$(pwd)/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+if cmd_exists conda; then
+    print_info "conda installed at: $(command -v conda)"
+    link_dotfile "$repo_root/condarc" "$HOME/.condarc"
 else
-    echo -e "${RED}alacritty is not installed.${RESET}"
+    print_warn "conda is not installed. Skipping ~/.condarc"
 fi
 
-# Ghostty
-if command -v ghostty >/dev/null 2>&1; then
-    echo -e "${GREEN}ghostty is installed at:${RESET} $(command -v ghostty)"
-    mkdir -p "$HOME/.config/ghostty"
-    ln -s "$(pwd)/ghostty-config" "$HOME/.config/ghostty/config"
+if cmd_exists starship; then
+    print_info "starship installed at: $(command -v starship)"
+    link_dotfile "$repo_root/starship.toml" "$HOME/.config/starship.toml"
 else
-    echo -e "${RED}ghostty is not installed.${RESET}"
+    print_warn "starship is not installed. Skipping ~/.config/starship.toml"
 fi
 
-# Wezterm
-if command -v wezterm >/dev/null 2>&1; then
-    echo -e "${GREEN}wezterm is installed at:${RESET} $(command -v wezterm)"
-    ln -s "$(pwd)/wezterm.lua" "$HOME/.wezterm.lua"
+if cmd_exists fastfetch; then
+    print_info "fastfetch installed at: $(command -v fastfetch)"
+    link_dotfile "$repo_root/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc"
 else
-    echo -e "${RED}wezterm is not installed.${RESET}"
+    print_warn "fastfetch is not installed. Skipping ~/.config/fastfetch/config.jsonc"
 fi
 
-# betterfetch
-if command -v betterfetch >/dev/null 2>&1; then
-    echo -e "${GREEN}betterfetch is installed at:${RESET} $(command -v betterfetch)"
-    mkdir -p "$HOME/.config/betterfetch/"
-    ln -s "$(pwd)/betterfetch.toml" "$HOME/.config/betterfetch/config.toml"
+if cmd_exists foot; then
+    print_info "foot installed at: $(command -v foot)"
+    link_dotfile "$repo_root/foot.ini" "$HOME/.config/foot/foot.ini"
 else
-    echo -e "${RED}betterfetch is not installed.${RESET}"
+    print_warn "foot is not installed. Skipping ~/.config/foot/foot.ini"
 fi
 
-# conda
-if command -v conda >/dev/null 2>&1; then
-    echo -e "${GREEN}conda is installed at:${RESET} $(command -v conda)"
-    ln -s "$(pwd)/condarc" "$HOME/.condarc"
+if cmd_exists fish; then
+    print_info "fish installed at: $(command -v fish)"
+    link_dotfile "$repo_root/fish" "$HOME/.config/fish"
 else
-    echo -e "${RED}conda is not installed.${RESET}"
+    print_warn "fish is not installed. Skipping ~/.config/fish"
 fi
 
+link_dotfile "$repo_root/xinitrc" "$HOME/.xinitrc"
 
-# starship
-if command -v starship >/dev/null 2>&1; then
-    echo -e "${GREEN}starship is installed at:${RESET} $(command -v starship)"
-		ln -s "$(pwd)/starship.toml" "$HOME/.config/starship.toml"
-else
-    echo -e "${RED}starship is not installed.${RESET}"
-fi
-
-# fastfetch (useless)
-if command -v fastfetch >/dev/null 2>&1; then
-    echo -e "${GREEN}fastfetch is installed at:${RESET} $(command -v fastfetch)"
-		mkdir -p "$HOME/.config/fastfetch"
-		ln -s "$(pwd)/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc"
-else
-    echo -e "${RED}fastfetch is not installed.${RESET}"
-fi
-
-# foot
-if command -v foot >/dev/null 2>&1; then
-    echo -e "${GREEN}foot is installed at:${RESET} $(command -v foot)"
-		mkdir -p "$HOME/.config/foot"
-		ln -s "$(pwd)/foot.ini" "$HOME/.config/foot/foot.ini"
-else
-    echo -e "${RED}foot is not installed.${RESET}"
-fi
-
-# Fish shell
-if command -v fish >/dev/null 2>&1; then
-    echo -e "${GREEN}fish is installed at:${RESET} $(command -v fish)"
-		mkdir -p "$HOME/.config/fish"
-		ln -s "$(pwd)/fish" "$HOME/.config"
-else
-    echo -e "${RED}fish is not installed.${RESET}"
-fi
-
-# ln -s "$(pwd)/settings.json" "$HOME/.config/Antigravity/User/settings.json"
-# ln -s "$(pwd)/settings.json" "$HOME/.config/Code/User/settings.json"
-
-
-# $HOME/.xinitrc
-ln -s "$(pwd)/xinitrc" "$HOME/.xinitrc"
-
-echo -e "${YELLOW}Done...${RESET}"
+print_info "Done."

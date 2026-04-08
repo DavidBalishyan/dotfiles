@@ -6,7 +6,7 @@
 My personal dotfiles.
 
 This repo contains configuration files and setup scripts for Vim, Zsh, tmux, and other tools I use daily.  
-It also includes a `Brewfile` for installing essential packages with [Homebrew on Linux](https://brew.sh)
+It also includes a `Brewfile` for optional package bootstrapping with [Homebrew on Linux](https://brew.sh).
 
 ---
 
@@ -14,6 +14,7 @@ It also includes a `Brewfile` for installing essential packages with [Homebrew o
 
 | File / Folder      | Purpose                                                 |
 | ------------------ | ------------------------------------------------------- |
+| `Makefile`         | Convenience wrapper for common tasks.                   |
 | `init.vim`         | Vim configuration.                                      |
 | `nvim/`            | Neovim configuration.                                   |
 | `emacs.el`         | Main Emacs configuration.                               |
@@ -32,7 +33,7 @@ It also includes a `Brewfile` for installing essential packages with [Homebrew o
 | `fastfetch.jsonc`  | Fastfetch configuration.                                |
 | `wm/`              | Window manager configurations (Hyprland, Sway, etc.).   |
 | `apps/`            | Application specific configurations.                    |
-| `Brewfile`         | List of packages to install with Homebrew.              |
+| `Brewfile`         | Optional package manifest for Homebrew.                 |
 | `justfile`         | Command runner configuration.                           |
 | `setup.sh`         | Script to symlink configs and set up the environment.   |
 
@@ -42,13 +43,14 @@ It also includes a `Brewfile` for installing essential packages with [Homebrew o
 
 - **[Linux](https://github.com/torvalds/linux)** (tested on Debian and Arch, should work on most distros)
 - **[git](https://github.com/git/git)**
-- **[Hombrew for Linux](https://brew.sh)**
 - Optional tools you’ll probably want:
   - Zsh
   - tmux
   - Vim
   - Neovim
   - Emacs
+
+> `Makefile` and `justfile` provide convenience targets. `Brewfile` is optional and only needed if you want to bootstrap packages with Homebrew.
 
 ---
 
@@ -61,12 +63,6 @@ git clone https://github.com/DavidBalishyan/dotfiles.git
 cd dotfiles
 ```
 
-Install packages from the `Brewfile`:
-
-```bash
-brew bundle
-```
-
 Back up old configs if needed:
 
 ```bash
@@ -76,10 +72,26 @@ mv ~/.vimrc ~/.vimrc.bak
 mv ~/.config/nvim ~/.config/nvim.bak
 ```
 
-Run the setup script (creates symlinks):
+Install dotfiles using the wrapper or runner:
 
 ```bash
-./setup.sh
+make setup
+# or
+just setup
+```
+
+If you want to bootstrap packages with Homebrew, optionally run:
+
+```bash
+brew bundle --file=Brewfile
+```
+
+If you want to inspect available commands:
+
+```bash
+make help
+# or
+just help
 ```
 
 ---

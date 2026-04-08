@@ -4,5 +4,7 @@
     "files.autoSave": "afterDelay",
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1"
 }
