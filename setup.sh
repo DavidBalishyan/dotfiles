@@ -79,77 +79,21 @@ link_if_installed emacs "$repo_root/emacs.custom.el" "$HOME/.emacs.custom.el" "E
 link_if_installed vim "$repo_root/init.vim" "$HOME/.vimrc" "Vim"
 link_if_installed tmux "$repo_root/tmux.conf" "$HOME/.tmux.conf" "tmux"
 link_if_installed zsh "$repo_root/zshrc" "$HOME/.zshrc" "zsh"
+link_if_installed nvim "$repo_root/nvim" "$HOME/.config/nvim" "Neovim"
+link_if_installed alacritty "$repo_root/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml" "Alacritty"
+link_if_installed ghostty "$repo_root/ghostty-config" "$HOME/.config/ghostty/config" "Ghostty"
+link_if_installed wezterm "$repo_root/wezterm.lua" "$HOME/.wezterm.lua" "Wezterm"
+link_if_installed betterfetch "$repo_root/betterfetch.toml" "$HOME/.config/betterfetch/config.toml" "betterfetch"
+link_if_installed conda "$repo_root/condarc" "$HOME/.condarc" "conda"
+link_if_installed starship "$repo_root/starship.toml" "$HOME/.config/starship.toml" "starship"
+link_if_installed fastfetch "$repo_root/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc" "fastfetch"
+link_if_installed foot "$repo_root/foot.ini" "$HOME/.config/foot/foot.ini" "foot"
+link_if_installed fish "$repo_root/fish" "$HOME/.config/fish" "fish"
 
-if cmd_exists nvim; then
-    print_info "Neovim installed at: $(command -v nvim)"
-    link_dotfile "$repo_root/nvim" "$HOME/.config/nvim"
+# Xinitrc is a special case since it's only relevant if the user is running Xorg
+if [ -n "$DISPLAY" ] && [ -x "$(command -v startx)" ]; then
+    link_dotfile "$repo_root/xinitrc" "$HOME/.xinitrc"
 else
-    print_warn "Neovim is not installed. Skipping ~/.config/nvim"
-fi
-
-if cmd_exists alacritty; then
-    print_info "Alacritty installed at: $(command -v alacritty)"
-    link_dotfile "$repo_root/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
-else
-    print_warn "Alacritty is not installed. Skipping ~/.config/alacritty/alacritty.toml"
-fi
-
-if cmd_exists ghostty; then
-    print_info "Ghostty installed at: $(command -v ghostty)"
-    link_dotfile "$repo_root/ghostty-config" "$HOME/.config/ghostty/config"
-else
-    print_warn "Ghostty is not installed. Skipping ~/.config/ghostty/config"
-fi
-
-if cmd_exists wezterm; then
-    print_info "Wezterm installed at: $(command -v wezterm)"
-    link_dotfile "$repo_root/wezterm.lua" "$HOME/.wezterm.lua"
-else
-    print_warn "Wezterm is not installed. Skipping ~/.wezterm.lua"
-fi
-
-if cmd_exists betterfetch; then
-    print_info "betterfetch installed at: $(command -v betterfetch)"
-    link_dotfile "$repo_root/betterfetch.toml" "$HOME/.config/betterfetch/config.toml"
-else
-    print_warn "betterfetch is not installed. Skipping ~/.config/betterfetch/config.toml"
-fi
-
-if cmd_exists conda; then
-    print_info "conda installed at: $(command -v conda)"
-    link_dotfile "$repo_root/condarc" "$HOME/.condarc"
-else
-    print_warn "conda is not installed. Skipping ~/.condarc"
-fi
-
-if cmd_exists starship; then
-    print_info "starship installed at: $(command -v starship)"
-    link_dotfile "$repo_root/starship.toml" "$HOME/.config/starship.toml"
-else
-    print_warn "starship is not installed. Skipping ~/.config/starship.toml"
-fi
-
-if cmd_exists fastfetch; then
-    print_info "fastfetch installed at: $(command -v fastfetch)"
-    link_dotfile "$repo_root/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc"
-else
-    print_warn "fastfetch is not installed. Skipping ~/.config/fastfetch/config.jsonc"
-fi
-
-if cmd_exists foot; then
-    print_info "foot installed at: $(command -v foot)"
-    link_dotfile "$repo_root/foot.ini" "$HOME/.config/foot/foot.ini"
-else
-    print_warn "foot is not installed. Skipping ~/.config/foot/foot.ini"
-fi
-
-if cmd_exists fish; then
-    print_info "fish installed at: $(command -v fish)"
-    link_dotfile "$repo_root/fish" "$HOME/.config/fish"
-else
-    print_warn "fish is not installed. Skipping ~/.config/fish"
-fi
-
-link_dotfile "$repo_root/xinitrc" "$HOME/.xinitrc"
-
+    print_warn "Xorg does not seem to be in use. Skipping $HOME/.xinitrc"
+fi 
 print_info "Done."
