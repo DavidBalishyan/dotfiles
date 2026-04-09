@@ -128,6 +128,9 @@ if is_installed nvim; then
 	alias vim="nvim"
 fi
 
+if is_installed just; then
+	alias j="just"
+fi
 # ------------------------------------------------------------
 # Path and Environment
 export EDITOR="nvim"

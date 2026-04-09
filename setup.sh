@@ -88,7 +88,6 @@ link_if_installed conda "$repo_root/condarc" "$HOME/.condarc" "conda"
 link_if_installed starship "$repo_root/starship.toml" "$HOME/.config/starship.toml" "starship"
 link_if_installed fastfetch "$repo_root/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc" "fastfetch"
 link_if_installed foot "$repo_root/foot.ini" "$HOME/.config/foot/foot.ini" "foot"
-link_if_installed fish "$repo_root/fish" "$HOME/.config/fish" "fish"
 
 # Xinitrc is a special case since it's only relevant if the user is running Xorg
 if [ -n "$DISPLAY" ] && [ -x "$(command -v startx)" ]; then

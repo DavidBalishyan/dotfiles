@@ -1,6 +1,7 @@
-# Show available just commands.
+# Runs `help`
 default: help
 
+# Show available just commands.
 help:
 	@just --list
 	@echo ""
