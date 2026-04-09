@@ -1,0 +1,38 @@
+[manager]
+cwd = { fg = "#4FC1FF", bold = true }
+
+# Selection / hover (VS Code-like blue highlight)
+hovered = { bg = "#264F78" }
+preview_hovered = { bg = "#264F78" }
+
+# Markers
+marker_copied = { fg = "#89D185" }
+marker_cut = { fg = "#F14C4C" }
+marker_selected = { fg = "#DCDCAA" }
+
+# Search
+find_keyword = { bg = "#613214" }
+find_position = { fg = "#FFFFFF", bg = "#007ACC" }
+
+[status]
+separator_open = ""
+separator_close = ""
+
+mode_normal = { fg = "#FFFFFF", bg = "#007ACC", bold = true }
+mode_select = { fg = "#000000", bg = "#D7BA7D", bold = true }
+mode_unset = { fg = "#FFFFFF", bg = "#F14C4C", bold = true }
+
+[icon]
+dirs = [{ name = "dir", text = "", fg = "#3794FF" }]
+
+files = [{ name = "file", text = "", fg = "#CCCCCC" }]
+
+# Optional: file-type icons (VS Code vibe)
+ext = [
+  { name = "js", text = "", fg = "#F1E05A" },
+  { name = "ts", text = "", fg = "#519ABA" },
+  { name = "json", text = "", fg = "#CBCB41" },
+  { name = "md", text = "", fg = "#519ABA" },
+  { name = "cpp", text = "", fg = "#519ABA" },
+  { name = "c", text = "", fg = "#A8B9CC" }
+]
