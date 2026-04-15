@@ -126,6 +126,7 @@ fi
 
 if is_installed nvim; then
 	alias vim="nvim"
+	alias v="nvim"
 fi
 
 if is_installed just; then
@@ -158,7 +159,7 @@ eval "$(thefuck --alias fk)"
 
 # ------------------------------------------------------------
 # pnpm
-export PNPM_HOME="/home/david/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -166,6 +167,7 @@ esac
 # pnpm end
 
 . "$HOME/.nvm/nvm.sh"
+. "$HOME/.deno/env"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

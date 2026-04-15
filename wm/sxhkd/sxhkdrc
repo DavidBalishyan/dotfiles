@@ -42,12 +42,12 @@ super + d
    rofi -show drun
 
 super + b
-      google-chrome
+      zen
 
 super + x
       boomer
 
-super + r
+super + shift + r
     bspc wm -r
 
 super + shift + s
@@ -58,3 +58,6 @@ super + shift + d
 
 super + w
     rofi -show window
+
+super + r 
+    rofi -show run
