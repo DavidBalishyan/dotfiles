@@ -144,7 +144,13 @@ Here’s what gets installed when you run `brew bundle`:
 ## Useful links for me
 
 - [glow](https://github.com/charmbracelet/glow)
-- []()
+- [ghfetch](https://github.com/ghfetch/ghfetch)
+- [portkiller](https://github.com/ayushsharma74/portkiller)
+- [bat](https://github.com/sharkdp/bat)
+- [fzf](https://github.com/junegunn/fzf)
+- [zoxide](https://github.com/ajeetdsouza/zoxide)
+- [shellcheck](https://github.com/koalaman/shellcheck)
+- [neovim](https://neovim.io)
 
 ---
 
