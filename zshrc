@@ -110,6 +110,7 @@ fi
 
 if is_installed bat; then
 	alias cat="bat -pn"
+	export MANPAGER="bat -l man -p"
 fi
 
 if is_installed tmux; then 

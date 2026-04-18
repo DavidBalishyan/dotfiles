@@ -141,6 +141,13 @@ Here’s what gets installed when you run `brew bundle`:
 
 ---
 
+## Useful links for me
+
+- [glow](https://github.com/charmbracelet/glow)
+- []()
+
+---
+
 ## Notes
 
 - Configs are tailored for Linux.
