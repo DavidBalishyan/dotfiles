@@ -12,6 +12,15 @@ setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
+# Colored man pages
+export LESS_TERMCAP_mb=$'\e[1;31m'      # begin blinking
+export LESS_TERMCAP_md=$'\e[1;31m'      # begin bold (red)
+export LESS_TERMCAP_me=$'\e[0m'         # end mode
+export LESS_TERMCAP_se=$'\e[0m'         # end standout-mode
+export LESS_TERMCAP_so=$'\e[1;44;33m'   # begin standout-mode (info box)
+export LESS_TERMCAP_ue=$'\e[0m'         # end underline
+export LESS_TERMCAP_us=$'\e[1;32m'      # begin underline (green)
+export GROFF_NO_SGR=1                   # necessary for some terminals
 
 # check if a command is installed on the system
 is_installed () {
