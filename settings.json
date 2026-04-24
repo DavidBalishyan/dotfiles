@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Tokyo Night",
+    "workbench.colorTheme": "GitHub Dark Default",
     "python.languageServer": "Default",
     "files.autoSave": "afterDelay",
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
@@ -9,7 +9,9 @@
     "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.iconTheme": "symbols",
+    "workbench.iconTheme": "gruvbox-material-icon-theme",
     "svelte.enable-ts-plugin": true,
-    "chat.viewSessions.orientation": "stacked"
+    "chat.viewSessions.orientation": "stacked",
+    "window.confirmSaveUntitledWorkspace": false,
+    "editor.lineNumbers": "relative"
 }

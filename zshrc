@@ -142,6 +142,10 @@ fi
 if is_installed just; then
 	alias j="just"
 fi
+
+if is_installed portkiller; then
+	alias pkiller="portkiller"
+fi
 # ------------------------------------------------------------
 # Path and Environment
 export EDITOR="nvim"

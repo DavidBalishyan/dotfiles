@@ -95,5 +95,6 @@ if [ -n "$DISPLAY" ] && [ -x "$(command -v startx)" ]; then
     link_dotfile "$repo_root/xinitrc" "$HOME/.xinitrc"
 else
     print_warn "Xorg does not seem to be in use. Skipping $HOME/.xinitrc"
-fi 
+fi
+
 print_info "Done."
