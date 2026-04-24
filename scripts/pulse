@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# Auto-detect network interface (default route)
+IFACE=$(ip route | awk '/default/ {print $5; exit}')
+
+# Fallback if not found
+IFACE=${IFACE:-eth0}
+
+get_cpu_usage() {
+    # Read CPU stats twice and compute delta
+    read -r cpu a b c idle rest < /proc/stat
+    total1=$((a+b+c+idle))
+    idle1=$idle
+
+    sleep 0.5
+
+    read -r cpu a b c idle rest < /proc/stat
+    total2=$((a+b+c+idle))
+    idle2=$idle
+
+    total=$((total2-total1))
+    idle=$((idle2-idle1))
+
+    echo "$(awk -v t="$total" -v i="$idle" 'BEGIN { printf "%.2f", (1 - i/t) * 100 }')"
+}
+
+declare -A DATA=()
+
+format_bits() {
+    local bits=$1
+
+    if ((bits > 1000000)); then
+        printf "%d Mbps" $((bits / 1000000))
+    elif ((bits > 1000)); then
+        printf "%d Kbps" $((bits / 1000))
+    else
+        printf "%d bps" "$bits"
+    fi
+}
+
+get_net_usage() {
+    local total_rx=0
+    local total_tx=0
+
+    while read -r line; do
+        # parse line
+        read -ra info <<< "$line"
+        local iface=${info[0]%:}
+        local rx_bytes=${info[1]}
+        local tx_bytes=${info[9]}
+
+        # skip loopback
+        [[ "$iface" == "lo" ]] && continue
+
+        local old=${DATA[$iface]}
+        DATA[$iface]="$rx_bytes $tx_bytes"
+
+        local old_rx=0 old_tx=0
+        [[ -n $old ]] && read -r old_rx old_tx <<< "$old"
+
+        total_rx=$((total_rx + (rx_bytes - old_rx)))
+        total_tx=$((total_tx + (tx_bytes - old_tx)))
+
+    done < <(tail -n +3 /proc/net/dev)
+
+    local rx_bits=$((total_rx * 8))
+    local tx_bits=$((total_tx * 8))
+
+    printf "↓ %s ↑ %s" "$(format_bits "$rx_bits")" "$(format_bits "$tx_bits")"
+}
+
+while true; do
+    mem=$(free -m | awk 'NR==2 { printf "%.2f", $3*100/$2 }')
+
+    cpu=$(get_cpu_usage)
+
+    temp=$(awk '{ printf "%.1f", $1/1000 }' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+
+		net=$(get_net_usage)
+
+    clear
+    printf "=== Pulse system monitor ===\n\n"
+    printf "Memory:      %6s %%\n" "$mem"
+    printf "CPU:         %6s %%\n" "$cpu"
+    printf "Temperature: %6s °C\n" "${temp:-N/A}"
+    printf "Network:     %s (%s)\n" "${net:-N/A}" "$IFACE"
+
+    sleep 1
+done
