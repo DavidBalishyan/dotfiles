@@ -1,5 +1,11 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 # This script requires you to have a global variable named $TERMINAL and it's the name of your default (preferred) terminal
-$TERMINAL -e bash -c "$*; echo -e; tput setaf 5 bold; \
+
+if [[ -z "$TERMINAL" ]]; then
+	echo 'The $TERMINAL variable is not set'
+	exit 126 # Command not executable error
+else
+	$TERMINAL -e bash -c "$*; echo -e; tput setaf 5 bold; \
     read -p 'Press any key to exit ' -s -n 1"
+fi
