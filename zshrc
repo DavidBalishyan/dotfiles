@@ -98,7 +98,10 @@ alias apt="sudo apt"
 alias df="df -h"
 alias off="/sbin/poweroff"
 alias reboot="/sbin/reboot"
-alias mk="makeover"
+
+if is_installed makeover; then
+	alias mk="makeover"
+fi
 
 if is_installed git; then
 	alias g="git"
@@ -203,11 +206,14 @@ if is_installed betterfetch; then
 	alias bfetch="betterfetch"
 fi
 
-# https://github.com/DavidBalishyan/namaskar
+### Things to run on shell startup
+
+# https://davidbalishyan.github.io/namaskar
 if is_installed namaskar; then
 	namaskar
 fi
 
+# https://davidbalishyan.github.io/dotfiles
 if is_installed timedate; then
 	timedate
 fi

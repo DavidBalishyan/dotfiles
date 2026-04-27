@@ -10,8 +10,8 @@ vim.o.mouse = 'a'
 vim.o.showmode = true -- false
 
 -- [[[Tabs and spaces]]]
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 
 -- [[[Swapfile]]]
 vim.o.swapfile = false
