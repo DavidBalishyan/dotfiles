@@ -40,23 +40,6 @@ load_p10k() {
 	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 }
 
-
-function nvims() {
-  items=(
-		"default"
-		"justaguylinux-nvim"
-		"LazyVim"
-		"AstroNvim"
-	)
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
-}
 # ------------------------------------------------------------
 # enbale vi mode
 bindkey -v
@@ -82,10 +65,8 @@ source "$ZSH_PLUGINS/aliases/aliases.plugin.zsh"
 
 # ------------------------------------------------------------
 # To see a full list of active aliases run `alias`
-alias ...="../.."
 alias _="sudo"
 alias suod="sudo"
-alias myip="curl https://ipecho.net/plain ; echo"
 alias reload="exec zsh"
 alias cls="clear -x"
 alias la="ls -lhia"
@@ -98,6 +79,7 @@ alias apt="sudo apt"
 alias df="df -h"
 alias off="/sbin/poweroff"
 alias reboot="/sbin/reboot"
+alias myip_extern="curl https://ysap.sh/ip"
 
 if is_installed makeover; then
 	alias mk="makeover"
@@ -139,7 +121,6 @@ fi
 
 if is_installed nvim; then
 	alias vim="nvim"
-	alias v="nvim"
 fi
 
 if is_installed just; then

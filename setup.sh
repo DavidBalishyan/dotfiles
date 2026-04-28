@@ -89,6 +89,7 @@ link_if_installed starship "$repo_root/starship.toml" "$HOME/.config/starship.to
 link_if_installed fastfetch "$repo_root/fastfetch.jsonc" "$HOME/.config/fastfetch/config.jsonc" "fastfetch"
 link_if_installed foot "$repo_root/foot.ini" "$HOME/.config/foot/foot.ini" "foot"
 link_if_installed yazi "$repo_root/yazi" "$HOME/.config/yazi" "yazi"
+link_if_installed bash "$repo_root/bashrc" "$HOME/.bashrc" "bash"
 
 # Xinitrc is a special case since it's only relevant if the user is running Xorg
 if [ -n "$DISPLAY" ] && [ -x "$(command -v startx)" ]; then
