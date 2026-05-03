@@ -73,13 +73,18 @@ alias la="ls -lhia"
 alias ll="ls -lha"
 alias l="ls -a"
 alias q="exit"
-alias ls="eza --git --icons"
+alias ls="ls --color=auto"
 alias tree="eza --tree"
 alias apt="sudo apt"
 alias df="df -h"
 alias off="/sbin/poweroff"
 alias reboot="/sbin/reboot"
 alias myip_extern="curl https://ysap.sh/ip"
+alias check_ollama="curl http://localhost:11434; printf '\n'"
+
+if is_installed eza; then
+	alias ls="eza --git --icons"
+fi
 
 if is_installed makeover; then
 	alias mk="makeover"
@@ -148,13 +153,23 @@ export PATH="$HOME/.gem/bin:$PATH"
 export GEM_HOME="$HOME/.gem"
 export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # ------------------------------------------------------------
+if is_installed brew; then
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(zoxide init zsh)"
-eval "$(fzf --zsh)"
-eval "$(thefuck --alias)"
-eval "$(thefuck --alias fk)"
+if is_installed zoxide; then
+	eval "$(zoxide init zsh)"
+	alias cd="z"
+fi
 
+if is_installed fzf; then
+	eval "$(fzf --zsh)"
+fi
+
+if is_installed thefuck; then
+	eval "$(thefuck --alias)"
+	eval "$(thefuck --alias fk)"
+fi
 # ------------------------------------------------------------
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"

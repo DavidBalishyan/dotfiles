@@ -13,5 +13,11 @@
     "svelte.enable-ts-plugin": true,
     "chat.viewSessions.orientation": "stacked",
     "window.confirmSaveUntitledWorkspace": false,
-    "editor.lineNumbers": "relative"
+    "editor.lineNumbers": "relative",
+    "redhat.telemetry.enabled": true,
+    "yaml.schemas": {
+        "file:///home/david/.vscode/extensions/continue.continue-1.2.22-linux-x64/config-yaml-schema.json": [
+            ".continue/**/*.yaml"
+        ]
+    }
 }
