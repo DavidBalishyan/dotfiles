@@ -1,37 +1,18 @@
-" Enable numbered lines
-set nu
-set rnu
-" Tab config
-set tabstop=2
-set shiftwidth=2
-" Status bar
-set laststatus=2
-highlight VertSplit guibg=#181818 guifg=#996228
-highlight SLBackground guibg=#181818 guifg=#996229
-highlight SLFileType guibg=indianred guifg=#663333
-highlight SLBufNumber guibg=SeaGreen guifg=#003333
-highlight SLLineNumber guibg=#80a0ff guifg=#003366
-set statusline=\%#SLBackground#
-" set statusline+=\%/
-set statusline+=\%= " separator
-set statusline+=\ %#SLFileType#
-set statusline+=\ FT:\ %Y
-set statusline+=\ %#SLBufNumber#
-set statusline+=\ BN:\ %n
-set statusline+=\ %#SLLineNumber#
-set statusline+=\ LN:\ %l
-" Set the right encoding
+" Make vim not behave like vi
+set nocp
+set number
+set relativenumber
 set encoding=utf-8
-" Enable syntax highlighting
-syntax on
-" Indentation
-set autoindent
-set smartindent
-" Colorsceme
 set termguicolors
 colo habamax
-" colo slate
-" Keymaps
+set mouse=a
+set autoindent
+set smartindent
+syntax on
+filetype plugin indent on
+" Pure vim fuzzy file finding
+set path+=**
+set wildmenu
 let mapleader=" "
 nnoremap <Leader>cc :set colorcolumn=80<cr>
 nnoremap <Leader>ncc :set colorcolumn-=80<cr>
@@ -43,5 +24,19 @@ nnoremap <Leader>f :F<cr>
 nnoremap <Leader>o :Vexplore<cr>
 nnoremap <Leader>Q :q!<cr>
 nnoremap <Leader>s :so<cr>
-" Set mouse on
-set mouse=a
+set tabstop=2
+set shiftwidth=2
+set laststatus=2
+highlight VertSplit guibg=#181818 guifg=#996228
+highlight SLBackground guibg=#181818 guifg=#996229
+highlight SLFileType guibg=indianred guifg=#663333
+highlight SLBufNumber guibg=SeaGreen guifg=#003333
+highlight SLLineNumber guibg=#80a0ff guifg=#003366
+set statusline=\%#SLBackground#
+set statusline+=\%= " separator
+set statusline+=\ %#SLFileType#
+set statusline+=\ FT:\ %Y
+set statusline+=\ %#SLBufNumber#
+set statusline+=\ BN:\ %n
+set statusline+=\ %#SLLineNumber#
+set statusline+=\ LN:\ %l

@@ -75,7 +75,7 @@ link_if_installed() {
 print_info "Starting dotfiles setup in $repo_root"
 
 link_if_installed emacs "$repo_root/emacs.el" "$HOME/.emacs" "Emacs"
-link_if_installed emacs "$repo_root/emacs.custom.el" "$HOME/.emacs.custom.el" "Emacs"
+link_if_installed emacs "$repo_root/emacs.custom.el" "$HOME/.emacs.custom.el" "Emacs custom"
 link_if_installed vim "$repo_root/init.vim" "$HOME/.vimrc" "Vim"
 link_if_installed tmux "$repo_root/tmux.conf" "$HOME/.tmux.conf" "tmux"
 link_if_installed zsh "$repo_root/zshrc" "$HOME/.zshrc" "zsh"

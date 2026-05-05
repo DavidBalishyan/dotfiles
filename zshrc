@@ -153,9 +153,7 @@ export PATH="$HOME/.gem/bin:$PATH"
 export GEM_HOME="$HOME/.gem"
 export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # ------------------------------------------------------------
-if is_installed brew; then
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 if is_installed zoxide; then
 	eval "$(zoxide init zsh)"
