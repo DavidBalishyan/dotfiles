@@ -22,6 +22,7 @@ export LESS_TERMCAP_ue=$'\e[0m'         # end underline
 export LESS_TERMCAP_us=$'\e[1;32m'      # begin underline (green)
 export GROFF_NO_SGR=1                   # necessary for some terminals
 
+bindkey -s '^X' 'zi\n'
 # check if a command is installed on the system
 is_installed () {
     command -v "$1" &> /dev/null

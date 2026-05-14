@@ -85,6 +85,7 @@ require 'plugins.blink-cmp'
 
 -- Apply colorscheme
 require('tokyonight').setup {
-  styles = { comments = { italic = false } },
+  styles = { comments = { italic = true } },
 }
+
 vim.cmd.colorscheme 'tokyonight-night'
