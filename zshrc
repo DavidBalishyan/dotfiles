@@ -82,6 +82,7 @@ alias off="/sbin/poweroff"
 alias reboot="/sbin/reboot"
 alias myip_extern="curl https://ysap.sh/ip"
 alias check_ollama="curl http://localhost:11434; printf '\n'"
+alias mkdir="mkdir -p"
 
 if is_installed eza; then
 	alias ls="eza --git --icons"

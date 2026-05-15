@@ -25,3 +25,20 @@ map('n', '<C-h>', '<C-w>h', { desc = 'Window left' })
 map('n', '<C-j>', '<C-w>j', { desc = 'Window down' })
 map('n', '<C-k>', '<C-w>k', { desc = 'Window up' })
 map('n', '<C-l>', '<C-w>l', { desc = 'Window right' })
+
+-- Indentation toggle
+map('n', '<leader>it', function()
+  if vim.o.expandtab then
+    vim.o.expandtab = false
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.cmd('retab!')
+    vim.print('Using tabs (4)')
+  else
+    vim.o.expandtab = true
+    vim.o.tabstop = 4
+    vim.o.shiftwidth = 4
+    vim.cmd('retab')
+    vim.print('Using spaces (4)')
+  end
+end, { desc = 'Toggle indentation (tabs/spaces)' })

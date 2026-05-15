@@ -8,6 +8,7 @@ opt.mouse = 'a'
 opt.showmode = true
 opt.tabstop = 4
 opt.shiftwidth = 4
+opt.expandtab = true
 opt.swapfile = false
 opt.clipboard = 'unnamedplus'
 opt.wrap = false
@@ -21,7 +22,7 @@ opt.timeoutlen = 300
 opt.splitright = true
 opt.splitbelow = true
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { trail = '·', nbsp = '␣', tab = '⇥ ' }
 opt.inccommand = 'split'
 opt.cursorline = true
 opt.scrolloff = 10
