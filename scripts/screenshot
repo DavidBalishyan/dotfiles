@@ -1,9 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
+
+source "$(dirname "$0")/board.bash"
+
 export DISPLAY="${DISPLAY:-:0}"
 
-# Dependencies check
-for cmd in xclip import notify-send; do command -v "$cmd" &>/dev/null || { echo "Missing: $cmd" >&2; exit 1; }; done
+require xclip "Install xclip with your package manager"
+require import "Install imagemagick with your package manager"
+require notify-send "Install libnotify-bin with your package manager"
 
 OUTDIR="${2:-$HOME/Pictures/Screenshots}"; mkdir -p "$OUTDIR"
 FILE="$OUTDIR/$(date +%Y%m%d_%H%M%S).png"
@@ -22,22 +26,21 @@ EOF
 }
 
 post(){ 
-    [[ "${WATERMARK:-}" == "1" ]] && { 
-        command -v magick &>/dev/null || { echo "Missing: magick" >&2; exit 1; }
-        # Watermark subsystem (env overrides supported)
+    if [[ "${WATERMARK:-}" == "1" ]]; then
+        require magick "Install imagemagick with your package manager"
         magick "$FILE" \
             -gravity "${WATERMARK_POS:-southeast}" \
             -pointsize "${WATERMARK_SIZE:-28}" \
             -fill white -undercolor "${WATERMARK_BG:-#00000080}" \
             -annotate +20+20 "${WATERMARK_TEXT:-$(date '+%Y-%m-%d %H:%M')}" \
             "$FILE"
-    }
+    fi
     xclip -selection clipboard -t image/png -i "$FILE" && notify-send -i "$FILE" "Screenshot: $(basename "$FILE")"
     command -v imgcliphist && imgcliphist add
 }
 
 colorpicker(){ 
-    command -v magick &>/dev/null || { notify-send "Missing: magick"; exit 1; }
+    require magick "Install imagemagick with your package manager"
     if command -v slop &>/dev/null; then
         import -window root -crop "$(slop --tolerance=0 || exit 1)" "$TMP"
     else
@@ -52,7 +55,7 @@ capture_full(){
 }
 
 capture_window(){ 
-    command -v xdotool &>/dev/null || { echo "Missing: xdotool" >&2; exit 1; }
+    require xdotool "Install xdotool with your package manager"
     import -window "$(xdotool getwindowfocus -f)" "$FILE" && post
 }
 

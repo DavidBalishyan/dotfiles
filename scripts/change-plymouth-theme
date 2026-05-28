@@ -1,64 +1,46 @@
 #!/bin/bash
 
-# Plymouth Theme Changer Script
-# Works on Debian-based systems
+source "$(dirname "$0")/board.bash"
 
-set -e
-
-# Function to list available themes
 list_themes() {
-    echo "Available Plymouth themes:"
+    info "Available Plymouth themes:"
     sudo plymouth-set-default-theme --list
 }
 
-# Function to set a theme
 set_theme() {
-    THEME="$1"
-    if [ -z "$THEME" ]; then
-        echo "Error: No theme specified."
-        exit 1
-    fi
-    echo "Setting Plymouth theme to: $THEME"
-    sudo plymouth-set-default-theme -R "$THEME"
-    echo "Theme set and initramfs rebuilt."
+    local theme="$1"
+    [[ -z "$theme" ]] && die "No theme specified."
+    run sudo plymouth-set-default-theme -R "$theme"
+    ok "Theme set and initramfs rebuilt."
 }
 
-# Function to update GRUB
 update_grub() {
-    echo "Updating GRUB..."
-    sudo update-grub
-    echo "GRUB updated."
+    info "Updating GRUB..."
+    run sudo update-grub
+    ok "GRUB updated."
 }
 
-# Function to preview theme
 preview_theme() {
-    echo "Previewing theme..."
-    sudo plymouthd
-    sudo plymouth --show-splash
+    info "Previewing theme..."
+    run sudo plymouthd
+    run sudo plymouth --show-splash
     sleep 5
-    sudo plymouth --quit
-    echo "Preview done."
+    run sudo plymouth --quit
+    ok "Preview done."
 }
 
-# Main menu
-echo "=== Plymouth Theme Manager ==="
-echo "1) List available themes"
-echo "2) Set a theme"
-echo "3) Preview current theme"
-echo "4) Update GRUB"
-echo "5) Exit"
-read -rp "Choose an option: " CHOICE
+header "Plymuth Theme Manager"
+choose choice "Choose an option" "List available themes" "Set a theme" "Preview current theme" "Update GRUB" "Exit"
 
-case "$CHOICE" in
-    1) list_themes ;;
-    2) 
-        read -rp "Enter theme name: " THEME
-        set_theme "$THEME"
+case "$choice" in
+    "List available themes") list_themes ;;
+    "Set a theme")
+        prompt theme "Enter theme name"
+        set_theme "$theme"
         ;;
-    3) preview_theme ;;
-    4) update_grub ;;
-    5) exit 0 ;;
-    *) echo "Invalid choice"; exit 1 ;;
+    "Preview current theme") preview_theme ;;
+    "Update GRUB") update_grub ;;
+    "Exit") exit 0 ;;
 esac
 
 

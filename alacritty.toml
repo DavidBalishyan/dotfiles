@@ -48,3 +48,9 @@ dynamic_padding = true
 [window.padding]
 x = 6
 y = 6
+
+# Re-enble terminal bell sound
+# [bell]
+# command = { program = "mpv", args = ["/usr/share/sounds/freedesktop/stereo/message-new-instant.oga"] }
+
+

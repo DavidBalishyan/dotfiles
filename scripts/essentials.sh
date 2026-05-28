@@ -1,43 +1,45 @@
 #!/bin/env bash
 
-# Script to install GCC, build tools, and essential development utilities
-# Supports Debian-based, Arch-based, and Void Linux distributions
+source "$(dirname "$0")/board.bash"
 
-set -e
+require_root
 
-echo "Detecting Linux distribution..."
+header "Essential Development Tools Installer"
 
-if [ -f /etc/debian_version ]; then
-    echo "Debian-based system detected. Installing packages..."
-    sudo apt update
-    sudo apt install -y \
-        build-essential gcc g++ make cmake \
-        git curl wget pkg-config \
-        gdb manpages-dev strace lsof \
-        vim
+if is_linux; then
+    if [ -f /etc/debian_version ]; then
+        info "Debian-based system detected. Installing packages..."
+        run sudo apt update
+        run sudo apt install -y \
+            build-essential gcc g++ make cmake \
+            git curl wget pkg-config \
+            gdb manpages-dev strace lsof \
+            vim
 
-elif [ -f /etc/arch-release ]; then
-    echo "Arch-based system detected. Installing packages..."
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm \
-        base-devel gcc make cmake \
-        git curl wget pkgconf \
-        gdb man-db strace lsof \
-        vim
+    elif [ -f /etc/arch-release ]; then
+        info "Arch-based system detected. Installing packages..."
+        run sudo pacman -Syu --noconfirm
+        run sudo pacman -S --noconfirm \
+            base-devel gcc make cmake \
+            git curl wget pkgconf \
+            gdb man-db strace lsof \
+            vim
 
-elif [ -f /etc/void-release ] || grep -qi 'void' /etc/os-release 2>/dev/null; then
-    echo "Void Linux detected. Installing packages..."
-    sudo xbps-install -Syu
-    sudo xbps-install -y \
-        base-devel gcc make cmake \
-        git curl wget pkg-config \
-        gdb man-pages strace lsof \
-        vim
+    elif [ -f /etc/void-release ] || grep -qi 'void' /etc/os-release 2>/dev/null; then
+        info "Void Linux detected. Installing packages..."
+        run sudo xbps-install -Syu
+        run sudo xbps-install -y \
+            base-devel gcc make cmake \
+            git curl wget pkg-config \
+            gdb man-pages strace lsof \
+            vim
 
+    else
+        die "Unsupported Linux distribution. Please install packages manually."
+    fi
 else
-    echo "Unsupported Linux distribution. Please install packages manually."
-    exit 1
+    die "This script is for Linux only."
 fi
 
-echo "Succes."
+ok "Success."
 

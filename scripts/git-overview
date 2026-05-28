@@ -1,30 +1,34 @@
 #!/usr/bin/env bash
 
+source "$(dirname "$0")/board.bash"
+
 ROOT_DIR="${1:-.}"
 
-echo "Scanning for git repositories in: $ROOT_DIR"
+info "Scanning for git repositories in: $ROOT_DIR"
 echo
+
+require git
 
 find "$ROOT_DIR" -type d -name ".git" 2>/dev/null | while read -r gitdir; do
     repo_dir="$(dirname "$gitdir")"
 
-    echo "======================================"
-    echo "Repo: $(basename "$repo_dir")"
-    echo "Path: $repo_dir"
+    hr
+    paint --bold --cyan "Repo: $(basename "$repo_dir")"
+    bullet "Path: $repo_dir"
 
     branch=$(git -C "$repo_dir" rev-parse --abbrev-ref HEAD 2>/dev/null)
     last_commit=$(git -C "$repo_dir" log -1 --pretty=format:"%h - %s (%cr)" 2>/dev/null)
     remote=$(git -C "$repo_dir" remote get-url origin 2>/dev/null)
 
     if [[ -n $(git -C "$repo_dir" status --porcelain 2>/dev/null) ]]; then
-        status="Dirty (uncommitted changes)"
+        dirty="$(paint --yellow "Dirty") (uncommitted changes)"
     else
-        status="Clean"
+        dirty="$(paint --green "Clean")"
     fi
 
-    echo "Branch: ${branch:-N/A}"
-    echo "Last Commit: ${last_commit:-N/A}"
-    echo "Remote: ${remote:-No remote}"
-    echo "Status: $status"
+    bullet "Branch: ${branch:-N/A}"
+    bullet "Last Commit: ${last_commit:-N/A}"
+    bullet "Remote: ${remote:-No remote}"
+    bullet "Status: $dirty"
     echo
 done

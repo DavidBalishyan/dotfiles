@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-# Auto-detect network interface (default route)
-IFACE=$(ip route | awk '/default/ {print $5; exit}')
+source "$(dirname "$0")/board.bash"
 
-# Fallback if not found
+IFACE=$(ip route | awk '/default/ {print $5; exit}')
 IFACE=${IFACE:-eth0}
 
 get_cpu_usage() {
-    # Read CPU stats twice and compute delta
     read -r cpu a b c idle rest < /proc/stat
     total1=$((a+b+c+idle))
     idle1=$idle
@@ -43,13 +41,11 @@ get_net_usage() {
     local total_tx=0
 
     while read -r line; do
-        # parse line
         read -ra info <<< "$line"
         local iface=${info[0]%:}
         local rx_bytes=${info[1]}
         local tx_bytes=${info[9]}
 
-        # skip loopback
         [[ "$iface" == "lo" ]] && continue
 
         local old=${DATA[$iface]}
@@ -66,24 +62,25 @@ get_net_usage() {
     local rx_bits=$((total_rx * 8))
     local tx_bits=$((total_tx * 8))
 
-    printf "↓ %s ↑ %s" "$(format_bits "$rx_bits")" "$(format_bits "$tx_bits")"
+    printf "%s %s %s %s" "$(paint -n --green "↓")" "$(format_bits "$rx_bits")" "$(paint -n --red "↑")" "$(format_bits "$tx_bits")"
 }
+
+trap cursor_show EXIT
+cursor_hide
 
 while true; do
     mem=$(free -m | awk 'NR==2 { printf "%.2f", $3*100/$2 }')
-
     cpu=$(get_cpu_usage)
-
     temp=$(awk '{ printf "%.1f", $1/1000 }' /sys/class/thermal/thermal_zone0/temp 2>/dev/null)
+    net=$(get_net_usage)
 
-		net=$(get_net_usage)
-
-    clear
-    printf "=== Pulse system monitor ===\n\n"
-    printf "Memory:      %6s %%\n" "$mem"
-    printf "CPU:         %6s %%\n" "$cpu"
-    printf "Temperature: %6s °C\n" "${temp:-N/A}"
-    printf "Network:     %s (%s)\n" "${net:-N/A}" "$IFACE"
+    clear_screen
+    paint --bold --cyan "=== Pulse System Monitor ==="
+    echo
+    paint -n --yellow "Memory:     "; printf "%6s %%\n" "$mem"
+    paint -n --magenta "CPU:        "; printf "%6s %%\n" "$cpu"
+    paint -n --red "Temperature:"; printf " %6s °C\n" "${temp:-N/A}"
+    paint -n --blue "Network:    "; printf " %s (%s)\n" "${net:-N/A}" "$IFACE"
 
     sleep 1
 done

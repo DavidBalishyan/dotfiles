@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Ensure no targets end with .c
+source "$(dirname "$0")/board.bash"
+
 args=""
 invalid_args=0
 for arg; do
@@ -10,14 +11,11 @@ for arg; do
     args="$args $arg"
 done
 if [ $invalid_args -eq 1 ]; then
-    echo "Did you mean 'make$args'?"
-    exit 1
+    die "Did you mean 'make$args'?" 1
 fi
 
-# Run make
 if [[ -d "$1" ]]; then
-    echo "$1 is a directory"
-    exit 1
+    die "$1 is a directory" 1
 else
-	$(which make) -B -s "$@"
+    run make -B -s "$@"
 fi

@@ -5,11 +5,11 @@
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontLigatures": true,
-    "gitlens.ai.model": "vscode",
+    "gitlens.ai.model": "gitkraken",
     "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
-    "workbench.iconTheme": "gruvbox-material-icon-theme",
+    "workbench.iconTheme": "symbols",
     "svelte.enable-ts-plugin": true,
     "chat.viewSessions.orientation": "stacked",
     "window.confirmSaveUntitledWorkspace": false,
@@ -20,5 +20,7 @@
             ".continue/**/*.yaml"
         ]
     },
-    "makefile.configureOnOpen": true
+    "makefile.configureOnOpen": true,
+    "gitlens.ai.ollama.url": "http://localhost:11434",
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash-lite"
 }
