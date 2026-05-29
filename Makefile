@@ -14,7 +14,7 @@ chx: ## Make the setup script executable.
 	@printf "setup.sh is executable\n"
 
 setup: chx ## Install symlinks for dotfiles.
-	@bash ./setup.sh
+	@./setup.sh
 
 run: ## Run the setup script directly.
 	@bash ./setup.sh
