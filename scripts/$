@@ -2,4 +2,5 @@
 
 source "$(dirname "$0")/board.bash"
 
-paint --bright-yellow "You seem to have typed (or copied/pasted) a dollar sign at the start of your command. Remember that a dollar sign simply represents your terminal window's prompt, not something you should actually type. Try again without the dollar sign!"
+die "You seem to have typed (or copied/pasted) a dollar sign at the start of your command. Remember that a dollar sign simply represents your terminal window's prompt, not something you should actually type. Try again without the dollar sign!"
+

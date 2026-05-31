@@ -53,6 +53,15 @@ if is_installed starship; then
 fi
 
 # ------------------------------------------------------------
+# update the title bar title
+precmd() {
+  echo -ne "\033]0;${PWD/#$HOME/~}\007"
+}
+
+preexec() {
+  echo -ne "\033]0;${1}\007"
+}
+# ------------------------------------------------------------
 
 fpath=($ZSH_PLUGINS/zsh-completions/src $fpath)
 autoload -U compinit && compinit
