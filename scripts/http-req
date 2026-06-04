@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+source "$(dirname "$0")/board.bash"
+
+usage() {
+    die "Usage: $0 <HOST> [PORT] [METHOD] [PATH] [DATA]"
+}
+
+[[ $# -lt 1 ]] && usage
+
+HOST="$1"
+shift
+
+PORT=80
+METHOD=GET
+PATH_=/
+DATA=""
+
+for arg in "$@"; do
+    if [[ "$arg" =~ ^[0-9]+$ ]] && [[ "$PORT" == "80" ]]; then
+        PORT="$arg"
+    elif [[ "$arg" =~ ^(GET|POST|PUT|DELETE|PATCH)$ ]] && [[ "$METHOD" == "GET" ]]; then
+        METHOD="$arg"
+    elif [[ "$arg" =~ ^/ ]] && [[ "$PATH_" == "/" ]]; then
+        PATH_="$arg"
+    elif [[ -z "$DATA" ]]; then
+        DATA="$arg"
+    fi
+done
+
+if ! { exec 3<>/dev/tcp/"$HOST"/"$PORT"; } 2>/dev/null; then
+    die "Failed to connect to $HOST:$PORT"
+fi
+
+lines=()
+lines+=("$METHOD $PATH_ HTTP/1.1")
+lines+=("Host: $HOST:$PORT")
+
+if [[ -n "$DATA" ]]; then
+    if [[ "$DATA" =~ ^[{\[] ]]; then
+        lines+=("Content-Type: application/json")
+    else
+        lines+=("Content-Type: application/x-www-form-urlencoded")
+    fi
+    lines+=("Content-Length: ${#DATA}")
+fi
+
+lines+=("Connection: close")
+lines+=("")
+
+{
+    for line in "${lines[@]}"; do
+        printf '%s\r\n' "$line"
+    done
+    if [[ -n "$DATA" ]]; then
+        printf '%s' "$DATA"
+    fi
+} >&3
+
+in_body=false
+while IFS= read -r data <&3 || [[ -n $data ]]; do
+    line="${data%$'\r'}"
+    if [[ -z "$line" ]]; then
+        in_body=true
+        if [[ -t 1 ]]; then
+            printf '\n'
+        fi
+        continue
+    fi
+    if [[ -t 1 ]] || $in_body; then
+        printf '%s\n' "$line"
+    fi
+done
+
+exec 3>&-

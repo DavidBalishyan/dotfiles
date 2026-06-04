@@ -22,5 +22,6 @@
     },
     "makefile.configureOnOpen": true,
     "gitlens.ai.ollama.url": "http://localhost:11434",
-    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash-lite"
+    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash-lite",
+    "workbench.panel.showLabels": false
 }

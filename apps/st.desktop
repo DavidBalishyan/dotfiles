@@ -8,3 +8,4 @@ Icon=st
 Exec=st
 Terminal=false
 X-Desktop-File-Install-Version=0.28
+# sudo ln -s "$(pwd)/st.desktop /usr/share/applications/st.desktop"

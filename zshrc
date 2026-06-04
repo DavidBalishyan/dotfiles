@@ -21,6 +21,8 @@ export LESS_TERMCAP_so=$'\e[1;44;33m'   # begin standout-mode (info box)
 export LESS_TERMCAP_ue=$'\e[0m'         # end underline
 export LESS_TERMCAP_us=$'\e[1;32m'      # begin underline (green)
 export GROFF_NO_SGR=1                   # necessary for some terminals
+# Fallback: we will use bat as the MANPAGER if it's installed
+export MANPAGER="less -s"
 
 bindkey -s '^X' 'zi\n'
 # check if a command is installed on the system
@@ -30,15 +32,15 @@ is_installed () {
 
 # Load pure prompt
 load_pure() {
-	fpath+=($ZSH_THEMES/pure)
-	autoload -U promptinit; promptinit
-	prompt pure
+    fpath+=($ZSH_THEMES/pure)
+    autoload -U promptinit; promptinit
+    prompt pure
 }
 
 # Load powerlevel10k
 load_p10k() {
-	source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
-	[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+    source "$ZSH_THEMES/powerlevel10k/powerlevel10k.zsh-theme"
+    [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 }
 
 # ------------------------------------------------------------
@@ -49,7 +51,7 @@ source "$ZSH_THEMES/simple.zsh-theme"
 
 # Starship
 if is_installed starship; then
-	eval "$(starship init zsh)"
+    eval "$(starship init zsh)"
 fi
 
 # ------------------------------------------------------------
@@ -94,57 +96,57 @@ alias check_ollama="curl http://localhost:11434; printf '\n'"
 alias mkdir="mkdir -p"
 
 if is_installed eza; then
-	alias ls="eza --git --icons"
+    alias ls="eza --git --icons"
 fi
 
 if is_installed makeover; then
-	alias mk="makeover"
+    alias mk="makeover"
 fi
 
 if is_installed git; then
-	alias g="git"
-	alias gc="git commit"
-	alias gp="git push"
-	alias gst="git status"
-	alias ga="git add"
+    alias g="git"
+    alias gc="git commit"
+    alias gp="git push"
+    alias gst="git status"
+    alias ga="git add"
 fi
 
 if is_installed bat; then
-	alias cat="bat -pn"
-	export MANPAGER="bat -l man -p"
+    alias cat="bat -pn"
+    export MANPAGER="bat -l man -p"
 fi
 
 if is_installed tmux; then 
-	alias t="tmux"
+    alias t="tmux"
 tm() {
   local session="${1:-Main}"
-	  if tmux has-session -t "$session" 2>/dev/null; then
-	    tmux attach-session -t "$session"
-	  else
-	    echo "Session '$session' not found. Creating new one..."
-	    tmux new-session -s "$session"
-	  fi
-	}
+      if tmux has-session -t "$session" 2>/dev/null; then
+        tmux attach-session -t "$session"
+      else
+        echo "Session '$session' not found. Creating new one..."
+        tmux new-session -s "$session"
+      fi
+    }
 fi
 
 if is_installed btop; then
-	alias top="btop"
+    alias top="btop"
 fi
 
 if is_installed shellcheck; then
-	alias shck="shellcheck"
+    alias shck="shellcheck"
 fi
 
 if is_installed nvim; then
-	alias vim="nvim"
+    alias vim="nvim"
 fi
 
 if is_installed just; then
-	alias j="just"
+    alias j="just"
 fi
 
 if is_installed portkiller; then
-	alias pkiller="portkiller"
+    alias pkiller="portkiller"
 fi
 # ------------------------------------------------------------
 # Path and Environment
@@ -167,17 +169,17 @@ export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 if is_installed zoxide; then
-	eval "$(zoxide init zsh)"
-	alias cd="z"
+    eval "$(zoxide init zsh)"
+    alias cd="z"
 fi
 
 if is_installed fzf; then
-	eval "$(fzf --zsh)"
+    eval "$(fzf --zsh)"
 fi
 
 if is_installed thefuck; then
-	eval "$(thefuck --alias)"
-	eval "$(thefuck --alias fk)"
+    eval "$(thefuck --alias)"
+    eval "$(thefuck --alias fk)"
 fi
 # ------------------------------------------------------------
 # pnpm
@@ -208,19 +210,19 @@ unset __conda_setup
 
 # https://github.com/betterfetch/betterfetch
 if is_installed betterfetch; then
-	alias bfetch="betterfetch"
+    alias bfetch="betterfetch"
 fi
 
 ### Things to run on shell startup
 
 # https://davidbalishyan.github.io/namaskar
 if is_installed namaskar; then
-	namaskar
+    namaskar
 fi
 
-# https://davidbalishyan.github.io/dotfiles
+# https://github.com/DavidBalishyan/dotfiles/blob/main/scripts/timedate
 if is_installed timedate; then
-	timedate
+    timedate
 fi
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

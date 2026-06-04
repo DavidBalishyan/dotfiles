@@ -10,7 +10,7 @@
 # # Contributors
 # - Dave Eddy <ysap@daveeddy.com>
 # - Ilias Moulas <ilias@moulas.dev>
-# - Me (David Balishya) <davidbalishyan12@gmail.com>
+# - David Balishyan <davidbalishyan12@gmail.com>
 
 source "$(dirname "$0")/board.bash"
 
@@ -20,83 +20,83 @@ TITLE_FMT="$DIM%15s %15s %15s %15s$RESET\\n"
 DATA_FMT="$CYAN%15s$RESET %15s %15s %15s\\n"
 
 format-bits() {
-	local bits=$1
+    local bits=$1
 
-	if ((bits > 1000000)); then
-		echo "$((bits / 1000000)) mbps"
-	elif ((bits > 1000)); then
-		echo "$((bits / 1000)) kbps"
-	else
-		echo "$bits  bps"
-	fi
+    if ((bits > 1000000)); then
+        echo "$((bits / 1000000)) mbps"
+    elif ((bits > 1000)); then
+        echo "$((bits / 1000)) kbps"
+    else
+        echo "$bits  bps"
+    fi
 }
 
 process-iface() {
-	local iface=$1
-	local rx_bytes=$2
-	local tx_bytes=$3
+    local iface=$1
+    local rx_bytes=$2
+    local tx_bytes=$3
 
-	local old=${DATA[$iface]}
+    local old=${DATA[$iface]}
 
-	DATA[$iface]="$rx_bytes $tx_bytes"
+    DATA[$iface]="$rx_bytes $tx_bytes"
 
-	local old_rx_bytes old_tx_bytes
+    local old_rx_bytes old_tx_bytes
 
-	if [[ -z $old ]]; then
-		old_rx_bytes=0
-		old_tx_bytes=0
-	else
-		read -r old_rx_bytes old_tx_bytes <<< "$old"
-	fi
+    if [[ -z $old ]]; then
+        old_rx_bytes=0
+        old_tx_bytes=0
+    else
+        read -r old_rx_bytes old_tx_bytes <<< "$old"
+    fi
 
-	local d_rx_bytes=$((rx_bytes - old_rx_bytes))
-	local d_tx_bytes=$((tx_bytes - old_tx_bytes))
-	local d_total_bytes=$((d_rx_bytes + d_tx_bytes))
+    local d_rx_bytes=$((rx_bytes - old_rx_bytes))
+    local d_tx_bytes=$((tx_bytes - old_tx_bytes))
+    local d_total_bytes=$((d_rx_bytes + d_tx_bytes))
 
-	local d_rx_bits=$((d_rx_bytes * 8))
-	local d_tx_bits=$((d_tx_bytes * 8))
-	local d_total_bits=$((d_total_bytes * 8))
+    local d_rx_bits=$((d_rx_bytes * 8))
+    local d_tx_bits=$((d_tx_bytes * 8))
+    local d_total_bits=$((d_total_bytes * 8))
 
-	local rx=${ format-bits "$d_rx_bits"; }
-	local tx=${ format-bits "$d_tx_bits"; }
-	local total=${ format-bits "$d_total_bits"; }
+    local rx=${ format-bits "$d_rx_bits"; }
+    local tx=${ format-bits "$d_tx_bits"; }
+    local total=${ format-bits "$d_total_bits"; }
 
-	printf "$DATA_FMT" "$iface" "$rx" "$tx" "$total"
+    printf "$DATA_FMT" "$iface" "$rx" "$tx" "$total"
 }
 
 main() {
-	trap cursor_show EXIT
-	cursor_hide
-	clear_screen
+    trap cursor_show EXIT
+    cursor_hide
+    clear_screen
 
-	while true; do
-		printf '\e[H'
+    while true; do
+        printf '\e[H'
 
-		local -a lines
-		mapfile -t -s 2 lines < /proc/net/dev \
-		    || die 'failed to read proc device'
+        local -a lines
+        mapfile -t -s 2 lines < /proc/net/dev \
+            || die 'failed to read proc device'
 
-		echo
-		printf "$TITLE_FMT" interface receive transmit total
+        echo
+        printf "$TITLE_FMT" interface receive transmit total
 
-		local line
-		for line in "${lines[@]}"; do
-			local -a info
-			read -ra info <<< "$line"
-			local iface=${info[0]}
-			local rx_bytes=${info[1]}
-			local tx_bytes=${info[9]}
+        local line
+        for line in "${lines[@]}"; do
+            local -a info
+            read -ra info <<< "$line"
+            local iface=${info[0]}
+            local rx_bytes=${info[1]}
+            local tx_bytes=${info[9]}
 
-			local iface=${iface%:}
+            local iface=${iface%:}
 
-			process-iface "$iface" "$rx_bytes" "$tx_bytes"
-		done
-		echo
+            process-iface "$iface" "$rx_bytes" "$tx_bytes"
+        done
+        echo
 
-		local keystroke
-		read -r -s -n 1 -t 1 keystroke
-		[[ $keystroke == q ]] && return 0
-	done
+        local keystroke
+        read -r -s -n 1 -t 1 keystroke
+        [[ $keystroke == q ]] && return 0
+    done
 }
 
 main "$@"
