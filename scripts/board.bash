@@ -1,5 +1,5 @@
-#!/bin/bash
-# board.bash -- pretty up your terminal scripts, no fuss
+#!/usr/bin/env bash
+# board.bash -- pretty up your terminal scripts
 #
 # A pure-bash library for colors, formatting, user prompts, progress bars,
 # logging, and other stuff that makes command-line scripts not look like
@@ -695,7 +695,7 @@ assert() {
     fi
 }
 
-# Platform checks so you don't have to remember uname -s syntax.
+# Platform checks 
 is_macos() { [[ "$(uname -s)" == "Darwin" ]]; }
 is_linux() { [[ "$(uname -s)" == "Linux" ]]; }
 is_wsl()   { [[ -f /proc/version ]] && grep -qi microsoft /proc/version; }

@@ -1,0 +1,6 @@
+min_scale = 0.01
+scroll_speed = 1.50
+drag_friction = 6.00
+scale_friction = 4.00
+ppm_save_path = $HOME/Pictures/cboomer-shot.ppm
+ppm_save = true

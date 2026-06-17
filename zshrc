@@ -148,6 +148,10 @@ fi
 if is_installed portkiller; then
     alias pkiller="portkiller"
 fi
+
+if is_installed onefetch; then
+    alias onefetch="onefetch --nerd-fonts"
+fi
 # ------------------------------------------------------------
 # Path and Environment
 export EDITOR="nvim"
@@ -183,10 +187,10 @@ if is_installed thefuck; then
 fi
 # ------------------------------------------------------------
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="/home/david/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+  *":$PNPM_HOME/bin:"*) ;;
+  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 # pnpm end
 
