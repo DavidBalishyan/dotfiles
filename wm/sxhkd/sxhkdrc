@@ -45,7 +45,7 @@ super + b
       zen
 
 super + x
-      boomer
+      cboomer
 
 super + shift + r
     bspc wm -r

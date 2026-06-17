@@ -1,6 +1,56 @@
+# cboomer config
+#
+# This file is read from ~/.config/cboomer/config on startup.
+# Run `cboomer --new-config` to regenerate.
+#
+# Types are inferred from the literal:
+#   quoted "string", 'char', 42 (int), 3.14 (float), true/false yes/no on/off (bool)
+# Comments start with #.
+
+# Minimum zoom scale (float). Prevents zooming out too far.
 min_scale = 0.01
+
+# Scroll/trackpad sensitivity (float). Higher = faster.
 scroll_speed = 1.50
+
+# Friction applied when dragging (float). 0 = no friction.
 drag_friction = 6.00
+
+# Friction applied when zooming (float). 0 = no friction.
 scale_friction = 4.00
-ppm_save_path = $HOME/Pictures/cboomer-shot.ppm
-ppm_save = true
+
+# Invert scroll-to-zoom direction (bool).
+scroll_invert = false
+
+# Start with on-screen display visible (bool). Shows shader name, zoom level,
+# and FPS. Can be toggled at any time with the 'o' key regardless of this value.
+osd = false
+
+# Smooth animation when resetting with '0' key (bool).
+smooth_reset = true
+
+# Path to a .ttf font file for the OSD (string). Can be a full path or just a
+# font name (e.g. "DejaVuSans") to search the system. If not set, auto-detects.
+font = "/usr/local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf"
+
+# Directory to save rendered view screenshots when pressing 's' (string).
+# Supports ~/ expansion. Defaults to ~/Pictures/Screenshots if not set.
+screenshot_dir = "$HOME/Pictures/Screenshots/cboomer"
+
+# Path to save a PPM screenshot on startup (string).
+# Supports ~/ and $HOME/ expansion.
+ppm_save_path = "$HOME/Pictures/cboomer-shot.ppm"
+
+# Enable PPM screenshot on startup (bool). true/false, yes/no, on/off.
+ppm_save = false
+
+# Default shader (string). Matches one of the shader names shown when cycling with 't'.
+# Options: Normal, Invert, CRT, Grayscale, Edge, VHS Glitch, Distortion,
+#          Zoom Blur, Posterize, Pixelate, Sepia, Emboss
+default_shader = "Normal"
+
+# Start with mirror mode enabled (bool).
+mirror = false
+
+# Initial flashlight radius in pixels (float).
+flashlight_radius = 200
