@@ -30,6 +30,10 @@ is_installed () {
     command -v "$1" &> /dev/null
 }
 
+battery() {
+    cat "/sys/class/power_supply/BAT0/capacity"
+}
+
 # Load pure prompt
 load_pure() {
     fpath+=($ZSH_THEMES/pure)
@@ -99,6 +103,11 @@ if is_installed eza; then
     alias ls="eza --git --icons"
 fi
 
+# https://github.com/DavidBalishyan/xc is unfinished and still not worth using as a serious ls repleacement
+# if is_installed xc; then
+#    alias ls="xc --git-repo --icons --nerd-font"
+# fi
+
 if is_installed makeover; then
     alias mk="makeover"
 fi
@@ -167,6 +176,7 @@ export PATH="$HOME/.opencode/bin:$PATH"
 export PATH="$HOME/.config/herd-lite/bin:$PATH"
 export PATH="$HOME/.local/share/gem/ruby/3.3.0/bin:$PATH"
 export PATH="$HOME/.gem/bin:$PATH"
+export PATH="/usr/local/musl/bin:$PATH"
 export GEM_HOME="$HOME/.gem"
 export PHP_INI_SCAN_DIR="$HOME/.config/herd-lite/bin:$PHP_INI_SCAN_DIR"
 # ------------------------------------------------------------

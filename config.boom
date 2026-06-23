@@ -35,7 +35,7 @@ font = "/usr/local/share/fonts/JetBrainsMonoNerdFont-Regular.ttf"
 
 # Directory to save rendered view screenshots when pressing 's' (string).
 # Supports ~/ expansion. Defaults to ~/Pictures/Screenshots if not set.
-screenshot_dir = "$HOME/Pictures/Screenshots/cboomer"
+# screenshot_dir = "$HOME/Pictures/Screenshots/cboomer"
 
 # Path to save a PPM screenshot on startup (string).
 # Supports ~/ and $HOME/ expansion.
@@ -54,3 +54,6 @@ mirror = false
 
 # Initial flashlight radius in pixels (float).
 flashlight_radius = 200
+
+# Image format for 's' key saves (string). "ppm" or "png".
+screenshot_format = "png"

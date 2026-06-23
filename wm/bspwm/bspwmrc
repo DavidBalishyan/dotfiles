@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export TERMINAL="alacritty"
 export BROWSER="zen"
@@ -24,14 +24,12 @@ bspc config split_ratio 0.52
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 
 # Start polybar
+# ~/.config/polybar/launch.sh &
 polybar &
 
-# FIXME: Can't turn off natural scroll---------------
-
-# xinput list | grep -i touchpad | awk -F'id=' '{print $2}' | cut -f1 -d' ' | while read id; do
-#    xinput set-prop "$id" "libinput Natural Scrolling Enabled" 0
-# done
-
-# xinput set-prop "ELAN0791:00 04F3:30FD Touchpad" "libinput Natural Scrolling Enabled" 0 &
-# xinput set-prop 14 "libinput Natural Scrolling Enabled" 0 &
-# FIXME: --------------------------------------------
+# Disable natural scrolling on touchpads
+if command -v xinput &>/dev/null; then
+  xinput list --name-only 2>/dev/null | grep -i touchpad | while read -r device; do
+    xinput set-prop "$device" "libinput Natural Scrolling Enabled" 1 2>/dev/null
+  done
+fi

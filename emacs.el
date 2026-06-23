@@ -1,6 +1,11 @@
 (setq custom-file "~/.emacs.custom.el")
 (load custom-file)
 
+(add-to-list 'load-path "~/.emacs.local")
+(require 'simpc-mode)
+(require 'cboomer-mode)
+(add-to-list 'auto-mode-alist '("\\.[hc]\\(pp\\)?\\'" . simpc-mode))
+
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -9,8 +14,8 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 
-(require 'evil)
-(evil-mode 1)
+;; (require 'evil)
+;; (evil-mode 1)
 
 (ido-mode 1)
 (ido-everywhere 1)

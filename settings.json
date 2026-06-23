@@ -1,30 +1,15 @@
 {
-    "workbench.colorTheme": "GitHub Dark Default",
+    "workbench.colorTheme": "Tokyo Night",
     "python.languageServer": "Default",
     "files.autoSave": "afterDelay",
     "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontFamily": "JetBrainsMono Nerd Font Mono",
     "editor.fontLigatures": true,
-    "gitlens.ai.model": "gitkraken",
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1",
     "explorer.confirmDragAndDrop": false,
     "explorer.confirmDelete": false,
     "workbench.iconTheme": "symbols",
-    "svelte.enable-ts-plugin": true,
     "chat.viewSessions.orientation": "stacked",
     "window.confirmSaveUntitledWorkspace": false,
     "editor.lineNumbers": "relative",
-    "redhat.telemetry.enabled": true,
-    "yaml.schemas": {
-        "file:///home/david/.vscode/extensions/continue.continue-1.2.22-linux-x64/config-yaml-schema.json": [
-            ".continue/**/*.yaml"
-        ],
-        "file:///home/david/.vscode/extensions/continue.continue-1.2.24-linux-x64/config-yaml-schema.json": [
-            ".continue/**/*.yaml"
-        ]
-    },
-    "makefile.configureOnOpen": true,
-    "gitlens.ai.ollama.url": "http://localhost:11434",
-    "gitlens.ai.gitkraken.model": "gemini:gemini-2.5-flash-lite",
     "workbench.panel.showLabels": false
 }
