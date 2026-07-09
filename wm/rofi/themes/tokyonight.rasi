@@ -1,4 +1,4 @@
-/* Tokyo Night theme for rofi — matches the polybar / dunst setup. */
+/* Tokyo Night theme for rofi - matches the polybar / dunst setup. */
 
 * {
     font:   "JetBrainsMono Nerd Font 11";

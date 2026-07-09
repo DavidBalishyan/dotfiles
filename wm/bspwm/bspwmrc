@@ -11,6 +11,9 @@ pgrep -x dunst > /dev/null || dunst &
 # Enable numlock
 command -v numlockx >/dev/null && numlockx on
 
+# Remap Caps Lock to Escape
+setxkbmap -option caps:escape
+
 # Normal pointer cursor (instead of the X "X")
 command -v xsetroot >/dev/null && xsetroot -cursor_name left_ptr
 
