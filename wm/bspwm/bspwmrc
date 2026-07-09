@@ -17,9 +17,6 @@ command -v xsetroot >/dev/null && xsetroot -cursor_name left_ptr
 # Clipboard history daemon
 command -v copyq >/dev/null && { pgrep -x copyq >/dev/null || copyq & }
 
-# Night light (edit coords in ~/.config/gammastep/config.ini)
-command -v gammastep >/dev/null && { pgrep -x gammastep >/dev/null || gammastep & }
-
 # Lock on idle and before suspend
 command -v xss-lock >/dev/null && { pgrep -x xss-lock >/dev/null || xss-lock -- ~/.config/bspwm/lock.sh & }
 

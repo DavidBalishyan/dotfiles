@@ -94,12 +94,13 @@ session with `bspc wm -r`).
 | `polybar/config.ini` | Bar (Tokyo Night) |
 | `rofi/` | Launcher config + `tokyonight.rasi` theme + `powermenu.sh` |
 | `dunst/dunstrc` | Notifications + OSD styling |
-| `gammastep/config.ini` | Night light (set your lat/lon) |
+| `gammastep/config.ini` | Night light temperature (toggled from the bar) |
 | `gtk-3.0/settings.ini` | Dark GTK theme |
 | `picom/picom.conf` | Compositor |
 
 ## Notes
 
-The night-light coordinates in `gammastep/config.ini` default to Yerevan, so
-edit `lat`/`lon` for your own location. The power menu is also on the bar: click
-the power icon on the right side.
+The night light is toggled manually from the bar — click the moon icon on the
+right side to warm the screen on/off. Adjust the warmth via `temp-night` in
+`gammastep/config.ini`. The power menu is also on the bar: click the power icon
+on the right side.
