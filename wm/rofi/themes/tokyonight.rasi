@@ -1,0 +1,109 @@
+/* Tokyo Night theme for rofi — matches the polybar / dunst setup. */
+
+* {
+    font:   "JetBrainsMono Nerd Font 11";
+
+    bg0:            #1a1b26;
+    bg1:            #16161e;
+    bg-highlight:   #292e42;
+    fg0:            #c0caf5;
+    fg-dim:         #565f89;
+
+    accent-color:   #7aa2f7;
+    urgent-color:   #f7768e;
+
+    background-color:   transparent;
+    text-color:         @fg0;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    location:       center;
+    width:          520;
+    border:         2px;
+    border-color:   @accent-color;
+    border-radius:  10px;
+
+    background-color:   @bg0;
+}
+
+inputbar {
+    spacing:    8px;
+    padding:    10px 12px;
+
+    background-color:   @bg1;
+    border-radius:      8px 8px 0 0;
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+prompt {
+    text-color: @accent-color;
+}
+
+entry {
+    placeholder:        "Search…";
+    placeholder-color:  @fg-dim;
+}
+
+textbox {
+    padding:            8px;
+    background-color:   @bg1;
+}
+
+listview {
+    padding:    6px;
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   false;
+}
+
+element {
+    padding:        8px 10px;
+    spacing:        8px;
+    border-radius:  6px;
+}
+
+element normal normal {
+    text-color: @fg0;
+}
+
+element normal urgent {
+    text-color: @urgent-color;
+}
+
+element normal active {
+    text-color: @accent-color;
+}
+
+element alternate normal {
+    text-color: @fg0;
+}
+
+element alternate active {
+    text-color: @accent-color;
+}
+
+element selected normal, element selected active {
+    text-color:         @bg0;
+    background-color:   @accent-color;
+}
+
+element selected urgent {
+    text-color:         @bg0;
+    background-color:   @urgent-color;
+}
+
+element-icon {
+    size:   1.0em;
+}
+
+element-text {
+    text-color: inherit;
+}

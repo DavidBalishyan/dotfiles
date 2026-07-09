@@ -12,5 +12,4 @@ terminal: "alacritty";
   }
 }
 
-// @theme "gruvbox-dark"
-@theme "./themes/nord-dark.rasi"
+@theme "./themes/tokyonight.rasi"

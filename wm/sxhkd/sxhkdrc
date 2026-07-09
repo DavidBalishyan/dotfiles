@@ -21,9 +21,37 @@ super + Escape
 super + {h,j,k,l}
     bspc node -f {west,south,north,east}
 
-# Move window
+# Swap window in a direction
 super + shift + {h,j,k,l}
-    bspc node -v {-20 0,0 20,0 -20,20 0}
+    bspc node -s {west,south,north,east} --follow
+
+# Toggle fullscreen / floating / monocle layout
+super + f
+    bspc node -t ~fullscreen
+super + shift + space
+    bspc node -t ~floating
+super + m
+    bspc desktop -l next
+
+# Preselect split direction (then move a node into it)
+super + ctrl + {h,j,k,l}
+    bspc node -p {west,south,north,east}
+# Cancel preselection
+super + ctrl + space
+    bspc node -p cancel
+
+# Resize: expand outward
+super + alt + {h,j,k,l}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# Resize: contract inward
+super + alt + shift + {h,j,k,l}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# Balance / rotate the tree
+super + shift + b
+    bspc node @/ -B
+super + shift + {comma,period}
+    bspc node @/ -R {-90,90}
 
 # Switch workspaces
 super + {1-9}
@@ -59,5 +87,53 @@ super + shift + d
 super + w
     rofi -show window
 
-super + r 
+super + r
     rofi -show run
+
+# Volume control (PipeWire / WirePlumber) + OSD
+XF86AudioRaiseVolume
+    wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ && ~/.config/sxhkd/osd.sh volume
+XF86AudioLowerVolume
+    wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%- && ~/.config/sxhkd/osd.sh volume
+XF86AudioMute
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && ~/.config/sxhkd/osd.sh volume
+
+# Microphone mute
+XF86AudioMicMute
+    wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Brightness control + OSD
+XF86MonBrightnessUp
+    brightnessctl set 5%+ && ~/.config/sxhkd/osd.sh brightness
+XF86MonBrightnessDown
+    brightnessctl set 5%- && ~/.config/sxhkd/osd.sh brightness
+
+# Media playback (playerctl)
+XF86AudioPlay
+    playerctl play-pause
+XF86AudioPause
+    playerctl play-pause
+XF86AudioNext
+    playerctl next
+XF86AudioPrev
+    playerctl previous
+XF86AudioStop
+    playerctl stop
+
+# Lock screen / power menu
+super + shift + x
+    ~/.config/bspwm/lock.sh
+super + shift + e
+    ~/.config/rofi/powermenu.sh
+
+# Clipboard history
+super + shift + v
+    copyq menu
+
+# Notifications: dismiss one / dismiss all / show history
+super + n
+    dunstctl close
+super + shift + n
+    dunstctl close-all
+super + ctrl + n
+    dunstctl history-pop
