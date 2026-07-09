@@ -239,4 +239,8 @@ if is_installed timedate; then
     timedate
 fi
 
+if [ -f "$HOME/.secret.sh" ]; then
+    source "$HOME/.secret.sh"
+fi
+
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
