@@ -21,7 +21,7 @@ PACKAGES=(
   brightnessctl                     # brightness control (+ OSD)
   pipewire wireplumber pavucontrol  # audio stack + mixer
   playerctl                         # media-key control (MPRIS)
-  i3lock xss-lock                   # screen locker + idle/suspend lock
+  xss-lock                          # idle/suspend lock trigger (locker is i3lock-color, built from source below)
   numlockx                          # enable numlock on login
   copyq                             # clipboard history (super+shift+v)
   gammastep                         # night light
@@ -40,6 +40,47 @@ install_deps() {
   sudo apt-get update
   sudo apt-get install -y "${PACKAGES[@]}"
   ok "Packages installed."
+}
+
+# i3lock-color isn't packaged for Debian, so build it from source. lock.sh
+# needs it for the themed ring + clock; without it the lock falls back to a
+# plain solid-color screen.
+I3LOCK_COLOR_BUILD_DEPS=(
+  git autoconf gcc make pkg-config
+  libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev
+  libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev
+  libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev
+  libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
+)
+
+install_i3lock_color() {
+  # The fork's version carries a ".c." marker / Fox / Raymond copyright.
+  if command -v i3lock >/dev/null && \
+     i3lock --version 2>&1 | grep -qiE 'color|\.c\.|cassandra|raymond'; then
+    ok "i3lock-color already installed."
+    return
+  fi
+  if ! command -v apt-get >/dev/null; then
+    warn "apt not found — build i3lock-color manually:"
+    warn "  https://github.com/Raymo111/i3lock-color"
+    return
+  fi
+  info "Installing i3lock-color build dependencies..."
+  sudo apt-get install -y "${I3LOCK_COLOR_BUILD_DEPS[@]}"
+
+  local src; src="$(mktemp -d /tmp/i3lock-color.XXXXXX)"
+  info "Building i3lock-color in $src ..."
+  git clone --depth 1 https://github.com/Raymo111/i3lock-color.git "$src"
+  (
+    cd "$src"
+    autoreconf -fi
+    mkdir -p build && cd build
+    ../configure --prefix=/usr/local --sysconfdir=/etc --disable-sanitizers
+    make
+    sudo make install
+  )
+  rm -rf "$src"
+  ok "i3lock-color installed ($(i3lock --version 2>&1))."
 }
 
 install_font() {
@@ -96,6 +137,7 @@ link_configs() {
 
 main() {
   install_deps
+  install_i3lock_color
   install_font
   link_configs
   echo

@@ -79,9 +79,11 @@ compositing.
 ./install.sh
 ```
 
-Installs the dependencies (Debian/apt), the JetBrainsMono Nerd Font, and
-symlinks the configs into `~/.config`. Then log into bspwm (or reload a running
-session with `bspc wm -r`).
+Installs the dependencies (Debian/apt), builds i3lock-color from source (it is
+not packaged for Debian; the build happens in a temp dir under `/tmp` and
+installs to `/usr/local`), installs the JetBrainsMono Nerd Font, and symlinks
+the configs into `~/.config`. Then log into bspwm (or reload a running session
+with `bspc wm -r`).
 
 ## Layout
 
