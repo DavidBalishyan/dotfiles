@@ -88,7 +88,7 @@ session with `bspc wm -r`).
 | Path | What |
 | --- | --- |
 | `bspwm/bspwmrc` | Startup: autostart daemons, window rules, monitors |
-| `bspwm/lock.sh` | i3lock screen locker |
+| `bspwm/lock.sh` | Screen locker (i3lock-color): Tokyo Night ring + clock over a blurred wallpaper |
 | `sxhkd/sxhkdrc` | All keybindings |
 | `sxhkd/osd.sh` | Volume/brightness OSD (dunst progress bar) |
 | `polybar/config.ini` | Bar (Tokyo Night) |
@@ -98,9 +98,25 @@ session with `bspc wm -r`).
 | `gtk-3.0/settings.ini` | Dark GTK theme |
 | `picom/picom.conf` | Compositor |
 
+## Referances
+
+- <https://github.com/baskerville/bspwm>
+- <https://github.com/polybar/polybar>
+- <https://github.com/baskerville/sxhkd>
+- <https://github.com/dunst-project/dunst>
+- <https://github.com/davatorium/rofi>
+- <https://github.com/yshui/picom>
+- <https://github.com/Raymo111/i3lock-color>
+
 ## Notes
 
-The night light is toggled manually from the bar — click the moon icon on the
+The night light is toggled manually from the bar: click the moon icon on the
 right side to warm the screen on/off. Adjust the warmth via `temp-night` in
 `gammastep/config.ini`. The power menu is also on the bar: click the power icon
 on the right side.
+
+The lock screen renders the wallpaper (`~/Pictures/wall.jpg`) fit to the primary
+output, lightly blurred and darkened, with the Tokyo Night ring and a live clock
+on top. Tweak the look in `bspwm/lock.sh`: the `-gaussian-blur` sigma controls
+blur strength and `-brightness-contrast` the darkening. Needs `i3lock-color`; it
+falls back to a plain solid-color lock if only vanilla i3lock is present.
