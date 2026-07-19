@@ -1,7 +1,7 @@
 configuration {
 font: "JetBrainsMono Nerd Font 10.5";
 show-icons: true;
-terminal: "alacritty"; 
+terminal: "st";
   timeout {
       action: "kb-cancel";
       delay:  0;

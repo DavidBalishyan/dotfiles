@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export TERMINAL="alacritty"
+export TERMINAL="st"
 export BROWSER="zen"
 
 pgrep -x sxhkd > /dev/null || sxhkd &
@@ -11,8 +11,8 @@ pgrep -x dunst > /dev/null || dunst &
 # Enable numlock
 command -v numlockx >/dev/null && numlockx on
 
-# Remap Caps Lock to Escape
-setxkbmap -option caps:escape
+# Remap Caps Lock to Escape, set Armenian Phonetic Eastern Unicode layout
+setxkbmap -layout us,am,ru -variant ,eastern, -option caps:escape,grp:alt_shift_toggle
 
 # Normal pointer cursor (instead of the X "X")
 command -v xsetroot >/dev/null && xsetroot -cursor_name left_ptr
@@ -50,7 +50,7 @@ bspc rule -a Blueman-manager    state=floating center=true
 bspc rule -a Nm-connection-editor state=floating center=true
 bspc rule -a "*:Toolkit"        state=floating   # Firefox/Zen picture-in-picture
 bspc rule -a Zen                desktop='^2'
-bspc rule -a Alacritty          follow=on
+bspc rule -a st-256color        follow=on   # st's WM_CLASS (derives from termname)
 
 # Start polybar (launch.sh spawns one bar per connected monitor)
 ~/.config/polybar/launch.sh &

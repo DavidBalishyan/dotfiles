@@ -12,6 +12,8 @@ setopt hist_ignore_space
 setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt hist_ignore_dups
+# newt theme
+export NEWT_COLORS='root=blue,black;window=lightgray,black;border=blue,black;title=magenta,black;button=black,cyan;actbutton=black,magenta;checkbox=lightgray,black;actcheckbox=black,blue;entry=lightgray,darkgray;label=lightgray,black;listbox=lightgray,black;actlistbox=black,blue;textbox=lightgray,black;acttextbox=black,blue' nmtui
 # Colored man pages
 export LESS_TERMCAP_mb=$'\e[1;31m'      # begin blinking
 export LESS_TERMCAP_md=$'\e[1;31m'      # begin bold (red)
@@ -100,7 +102,7 @@ alias check_ollama="curl http://localhost:11434; printf '\n'"
 alias mkdir="mkdir -p"
 
 if is_installed eza; then
-    alias ls="eza --git --icons"
+    alias ls="eza --git --icons=auto"
 fi
 
 # https://github.com/DavidBalishyan/xc is unfinished and still not worth using as a serious ls repleacement

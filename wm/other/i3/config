@@ -1,22 +1,46 @@
 set $mod Mod4
-set $term "alacritty"
+set $term "st"
 set $bar "polybar"
 set $bg "$HOME/Pictures/wall.jpg"
 set $runner "rofi -show drun"
 font pango:monospace 8
+
+# Notification daemon
+exec_always --no-startup-id pgrep -x dunst || dunst &
+
+# Enable numlock
+exec --no-startup-id numlockx on
+
+# Remap Caps Lock to Escape, set Armenian Phonetic Eastern Unicode layout
+exec --no-startup-id setxkbmap -layout us,am,ru -variant ,eastern, -option caps:escape,grp:alt_shift_toggle
+
+# Clipboard history daemon
+exec_always --no-startup-id pgrep -x copyq || copyq &
+
+# Lock on idle and before suspend
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+
+# Apply a saved monitor layout on login, if any
+exec --no-startup-id autorandr --change --default default &
 
 exec_always --no-startup-id feh --bg-fill $bg && xsetroot -cursor_name left_ptr
 exec_always autotiling
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf
 
 exec_always $bar
-default_border pixel 0
+default_border pixel 1
+default_floating_border pixel 1
+
+gaps inner 3
+gaps outer 0
 bindsym $mod+d exec --no-startup-id $runner
 bindsym $mod+x exec boomer
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 exec --no-startup-id nm-applet
+
+# Disable natural scrolling on touchpads
+exec --no-startup-id xinput list --name-only 2>/dev/null | grep -i touchpad | while read -r device; do xinput set-prop "$device" "libinput Natural Scrolling Enabled" 1 2>/dev/null; done
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status

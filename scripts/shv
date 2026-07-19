@@ -2,7 +2,7 @@
 
 source "$(dirname "$0")/board.bash"
 
-for cmd in bash zsh fish; do
+for cmd in bash zsh; do
     if command -v "$cmd" &>/dev/null; then
         paint -n --green "$cmd: "
         $cmd --version | head -1

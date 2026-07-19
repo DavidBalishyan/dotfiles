@@ -3,7 +3,7 @@ super = Mod4
 
 # Launch terminal
 super + Return
-    alacritty
+    st
 
 # Exit session
 super + shift + q

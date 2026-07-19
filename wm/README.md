@@ -13,7 +13,7 @@ compositing.
 ### Applications & session
 | Keys | Action |
 | --- | --- |
-| `Super + Return` | Terminal (alacritty) |
+| `Super + Return` | Terminal (st) |
 | `Super + b` | Browser (zen) |
 | `Super + x` | cboomer |
 | `Super + d` | App launcher (`rofi -show drun`) |
@@ -93,7 +93,8 @@ with `bspc wm -r`).
 | `bspwm/lock.sh` | Screen locker (i3lock-color): Tokyo Night ring + clock over a blurred wallpaper |
 | `sxhkd/sxhkdrc` | All keybindings |
 | `sxhkd/osd.sh` | Volume/brightness OSD (dunst progress bar) |
-| `polybar/config.ini` | Bar (Tokyo Night) |
+| `polybar/config-bspwm.ini` | Bar config for bspwm (Tokyo Night) |
+| `polybar/config-i3.ini` | Bar config for i3 (Tokyo Night) |
 | `rofi/` | Launcher config + `tokyonight.rasi` theme + `powermenu.sh` |
 | `dunst/dunstrc` | Notifications + OSD styling |
 | `gammastep/config.ini` | Night light temperature (toggled from the bar) |

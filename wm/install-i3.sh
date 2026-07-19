@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #=====================================================
-#  Setup for the bspwm / sxhkd / polybar desktop
+#  Setup for the i3 / polybar desktop
 #  - installs dependencies (Debian/apt)
 #  - installs the JetBrainsMono Nerd Font
 #  - symlinks the configs into ~/.config
@@ -14,24 +14,27 @@ warn() { printf '\033[1;33m!!\033[0m %s\n' "$*"; }
 ok()   { printf '\033[1;32m✓\033[0m %s\n' "$*"; }
 
 PACKAGES=(
-  bspwm sxhkd polybar               # wm + hotkey daemon + bar
-  picom feh                         # compositor + wallpaper
-  rofi dunst                        # launcher + notifications/OSD
-  brightnessctl                     # brightness control (+ OSD; terminal is st, built from source below)
+  i3                              # window manager
+  polybar                         # status bar
+  picom feh                       # compositor + wallpaper
+  rofi dunst                      # launcher + notifications/OSD
+  brightnessctl                   # brightness control (+ OSD; terminal is st, built from source below)
   pipewire wireplumber pavucontrol  # audio stack + mixer
-  playerctl                         # media-key control (MPRIS)
-  xss-lock                          # idle/suspend lock trigger (locker is i3lock-color, built from source below)
-  numlockx                          # enable numlock on login
-  copyq                             # clipboard history (super+shift+v)
-  gammastep                         # night light
-  autorandr                         # monitor hotplug profiles
-  x11-xserver-utils xinput          # xrandr / xsetroot / touchpad tweaks
-  fontconfig curl unzip             # font install helpers
+  playerctl                       # media-key control (MPRIS)
+  xss-lock                        # idle/suspend lock trigger
+  i3lock                          # screen locker
+  numlockx                        # enable numlock on login
+  copyq                           # clipboard history (super+shift+v)
+  gammastep                       # night light
+  autorandr                       # monitor hotplug profiles
+  x11-xserver-utils xinput        # xrandr / xsetroot / touchpad tweaks
+  fontconfig curl unzip           # font install helpers
+  i3-gaps                         # gaps support (overrides i3 if installed)
 )
 
 install_deps() {
   if ! command -v apt-get >/dev/null; then
-    warn "apt not found — install these manually with your package manager:"
+    warn "apt not found - install these manually with your package manager:"
     warn "  ${PACKAGES[*]}"
     return
   fi
@@ -39,47 +42,6 @@ install_deps() {
   sudo apt-get update
   sudo apt-get install -y "${PACKAGES[@]}"
   ok "Packages installed."
-}
-
-# i3lock-color isn't packaged for Debian, so build it from source. lock.sh
-# needs it for the themed ring + clock; without it the lock falls back to a
-# plain solid-color screen.
-I3LOCK_COLOR_BUILD_DEPS=(
-  git autoconf gcc make pkg-config
-  libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev
-  libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev
-  libxcb-randr0-dev libxcb-image0-dev libxcb-util0-dev libxcb-xrm-dev
-  libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
-)
-
-install_i3lock_color() {
-  # The fork's version carries a ".c." marker / Fox / Raymond copyright.
-  if command -v i3lock >/dev/null && \
-     i3lock --version 2>&1 | grep -qiE 'color|\.c\.|cassandra|raymond'; then
-    ok "i3lock-color already installed."
-    return
-  fi
-  if ! command -v apt-get >/dev/null; then
-    warn "apt not found — build i3lock-color manually:"
-    warn "  https://github.com/Raymo111/i3lock-color"
-    return
-  fi
-  info "Installing i3lock-color build dependencies..."
-  sudo apt-get install -y "${I3LOCK_COLOR_BUILD_DEPS[@]}"
-
-  local src; src="$(mktemp -d /tmp/i3lock-color.XXXXXX)"
-  info "Building i3lock-color in $src ..."
-  git clone --depth 1 https://github.com/Raymo111/i3lock-color.git "$src"
-  (
-    cd "$src"
-    autoreconf -fi
-    mkdir -p build && cd build
-    ../configure --prefix=/usr/local --sysconfdir=/etc --disable-sanitizers
-    make
-    sudo make install
-  )
-  rm -rf "$src"
-  ok "i3lock-color installed ($(i3lock --version 2>&1))."
 }
 
 # st is my own build (https://github.com/DavidBalishyan/st.git), not packaged,
@@ -99,7 +61,7 @@ install_st() {
     return
   fi
   if ! command -v apt-get >/dev/null; then
-    warn "apt not found - build st manually from:"
+    warn "apt not found — build st manually from:"
     warn "  $ST_REPO"
     return
   fi
@@ -154,31 +116,25 @@ link() {
 link_configs() {
   info "Linking configs into ~/.config..."
   mkdir -p "$HOME/.config"
-  link bspwm     "$HOME/.config/bspwm"
-  link sxhkd     "$HOME/.config/sxhkd"
+  link i3       "$HOME/.config/i3"
   link polybar   "$HOME/.config/polybar"
   link picom     "$HOME/.config/picom"
   link dunst     "$HOME/.config/dunst"
   link rofi      "$HOME/.config/rofi"
   link gammastep "$HOME/.config/gammastep"
   link gtk-3.0   "$HOME/.config/gtk-3.0"
-  chmod +x "$DOTFILES/bspwm/bspwmrc" \
-           "$DOTFILES/bspwm/lock.sh" \
-           "$DOTFILES/sxhkd/osd.sh" \
-           "$DOTFILES/rofi/powermenu.sh" \
-           "$DOTFILES/polybar/launch.sh" \
+  chmod +x "$DOTFILES/polybar/launch.sh" \
            "$DOTFILES/polybar/scripts/"*.sh 2>/dev/null || true
 }
 
 main() {
   install_deps
-  install_i3lock_color
   install_st
   install_font
   link_configs
   echo
   ok "Setup complete."
-  info "Log into bspwm, or reload a running session with:  bspc wm -r"
+  info "Log into i3, or reload a running session with:  i3-msg reload"
 }
 
 main "$@"
