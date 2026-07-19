@@ -1,0 +1,150 @@
+# dfm manifest
+# Migrated from legacy setup.sh - each section is a component
+
+[emacs]
+desc = Emacs editor configuration
+packages.apt = emacs
+packages.brew = emacs
+packages.pacman = emacs
+source = emacs.el -> ~/.emacs
+source = emacs.custom.el -> ~/.emacs.custom.el
+condition = command:emacs
+
+[vim]
+desc = Vim editor configuration
+packages.apt = vim
+packages.brew = vim
+packages.pacman = vim
+source = init.vim -> ~/.vimrc
+condition = command:vim
+
+[tmux]
+desc = tmux terminal multiplexer configuration
+packages.apt = tmux
+packages.brew = tmux
+packages.pacman = tmux
+source = tmux.conf -> ~/.tmux.conf
+source = tmux/plugins/tokyonight -> ~/.config/tmux/plugins/tokyonight
+condition = command:tmux
+
+[zsh]
+desc = Zsh shell and prompt configuration
+packages.apt = zsh zsh-syntax-highlighting
+packages.brew = zsh
+packages.pacman = zsh
+packages.xbps = zsh
+packages.dnf = zsh
+source = zshrc -> ~/.zshrc
+source = starship.toml -> ~/.config/starship.toml
+condition = command:zsh
+
+[nvim]
+desc = Neovim editor (native vim.pack, no lazy.nvim)
+packages.apt = neovim
+packages.brew = neovim
+packages.pacman = neovim
+packages.xbps = neovim
+packages.dnf = neovim
+source = nvim -> ~/.config/nvim
+condition = command:nvim
+
+[alacritty]
+desc = Alacritty GPU-accelerated terminal
+packages.apt = alacritty
+packages.brew = alacritty
+packages.pacman = alacritty
+source = alacritty.toml -> ~/.config/alacritty/alacritty.toml
+condition = command:alacritty
+
+[ghostty]
+desc = Ghostty terminal emulator
+source = ghostty-config -> ~/.config/ghostty/config
+condition = command:ghostty
+
+[wezterm]
+desc = Wezterm terminal emulator
+source = wezterm.lua -> ~/.wezterm.lua
+condition = command:wezterm
+
+[foot]
+desc = Foot Wayland terminal
+packages.apt = foot
+packages.pacman = foot
+source = foot.ini -> ~/.config/foot/foot.ini
+condition = command:foot
+
+[conda]
+desc = Conda package manager configuration
+source = condarc -> ~/.condarc
+condition = command:conda
+
+[bash]
+desc = Bash shell configuration
+packages.apt = bash
+packages.brew = bash
+packages.pacman = bash
+source = bashrc -> ~/.bashrc
+condition = command:bash
+
+[betterfetch]
+desc = Betterfetch system info
+source = betterfetch.toml -> ~/.config/betterfetch/config.toml
+condition = command:betterfetch
+
+[fastfetch]
+desc = Fastfetch system info
+packages.apt = fastfetch
+packages.brew = fastfetch
+packages.pacman = fastfetch
+source = fastfetch.jsonc -> ~/.config/fastfetch/config.jsonc
+condition = command:fastfetch
+
+[yazi]
+desc = Yazi file manager
+packages.apt = yazi
+packages.brew = yazi
+packages.pacman = yazi
+source = yazi -> ~/.config/yazi
+condition = command:yazi
+
+[bspwm]
+desc = bspwm desktop environment + sxhkd + polybar
+packages.apt = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
+packages.pacman = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
+packages.xbps = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
+packages.dnf = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
+source = wm/bspwm -> ~/.config/bspwm
+source = wm/sxhkd -> ~/.config/sxhkd
+source = wm/polybar -> ~/.config/polybar
+source = wm/picom -> ~/.config/picom
+source = wm/dunst -> ~/.config/dunst
+source = wm/rofi -> ~/.config/rofi
+source = wm/gammastep -> ~/.config/gammastep
+source = wm/gtk-3.0 -> ~/.config/gtk-3.0
+hook.install = scripts/install-st.sh scripts/install-i3lock-color.sh scripts/install-font.sh
+condition = os:linux
+
+[ly]
+desc = Ly TUI display manager
+packages.apt = ly
+source = ly/config.ini -> /etc/ly/config.ini
+hook.install = ly/install.sh
+condition = os:linux
+
+[lightdm]
+desc = LightDM display manager with GTK greeter
+packages.apt = lightdm lightdm-gtk-greeter
+source = lightdm/lightdm.conf -> /etc/lightdm/lightdm.conf
+source = lightdm/lightdm-gtk-greeter.conf -> /etc/lightdm/lightdm-gtk-greeter.conf
+hook.install = lightdm/install.sh
+condition = os:linux
+
+[xinitrc]
+desc = Xorg init script
+source = xinitrc -> ~/.xinitrc
+condition = env:DISPLAY
+
+[apps]
+desc = Desktop application entries
+source = apps/st.desktop -> /usr/share/applications/st.desktop
+condition = os:linux
