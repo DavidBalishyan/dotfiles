@@ -126,8 +126,3 @@ condition = os:linux
 desc = Xorg init script
 source = xinitrc -> ~/.xinitrc
 condition = env:DISPLAY
-
-[apps]
-desc = Desktop application entries
-source = apps/st.desktop -> /usr/share/applications/st.desktop
-condition = os:linux
