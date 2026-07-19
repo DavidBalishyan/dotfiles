@@ -107,23 +107,6 @@ packages.pacman = yazi
 source = yazi -> ~/.config/yazi
 condition = command:yazi
 
-[bspwm]
-desc = bspwm desktop environment + sxhkd + polybar
-packages.apt = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
-packages.pacman = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
-packages.xbps = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
-packages.dnf = bspwm sxhkd polybar picom feh rofi dunst brightnessctl pipewire wireplumber pavucontrol playerctl xss-lock numlockx copyq gammastep autorandr x11-xserver-utils xinput fontconfig curl unzip
-source = wm/bspwm -> ~/.config/bspwm
-source = wm/sxhkd -> ~/.config/sxhkd
-source = wm/polybar -> ~/.config/polybar
-source = wm/picom -> ~/.config/picom
-source = wm/dunst -> ~/.config/dunst
-source = wm/rofi -> ~/.config/rofi
-source = wm/gammastep -> ~/.config/gammastep
-source = wm/gtk-3.0 -> ~/.config/gtk-3.0
-hook.install = scripts/install-st.sh scripts/install-i3lock-color.sh scripts/install-font.sh
-condition = os:linux
-
 [ly]
 desc = Ly TUI display manager
 packages.apt = ly
