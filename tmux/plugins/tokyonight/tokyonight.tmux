@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-# ─────────────────────────────────────────────────────────────────────────────
-#  Tokyo Night — a tmux theme
+#  Tokyo Night - a tmux theme
 #  https://github.com/folke/tokyonight.nvim (palette source)
 #
 #  Usage (from ~/.tmux.conf):
@@ -9,8 +8,6 @@
 #  Options (set BEFORE the run-shell line):
 #     set -g @tokyonight_flavor  'night'   # night | storm | moon | day
 #     set -g @tokyonight_left    ' #S '    # text for the session block
-# ─────────────────────────────────────────────────────────────────────────────
-
 get() {
 	local value
 	value="$(tmux show-option -gqv "$1")"
@@ -19,7 +16,7 @@ get() {
 
 flavor="$(get "@tokyonight_flavor" "night")"
 
-# ── Palette ──────────────────────────────────────────────────────────────────
+# Palette
 # Shared accents (identical across the dark flavors)
 fg="#c0caf5"
 fg_dark="#a9b1d6"
@@ -81,7 +78,7 @@ left_text="$(get "@tokyonight_left" " #S ")"
 sep_r=""   # right-pointing (left side)
 sep_l=""   # left-pointing  (right side)
 
-# ── General ──────────────────────────────────────────────────────────────────
+# General
 tmux set -g status on
 tmux set -g status-interval 5
 tmux set -g status-justify left
@@ -102,12 +99,12 @@ tmux set -g mode-style "bg=$blue,fg=$bg"
 # Clock
 tmux set -g clock-mode-colour "$blue"
 
-# ── Left: session block ──────────────────────────────────────────────────────
+# Left: session block
 tmux set -g status-left-length 40
 tmux set -g status-left \
 	"#[bg=$blue,fg=$bg,bold]$left_text#[bg=$bg_dark,fg=$blue]$sep_r "
 
-# ── Right: prefix indicator · date · time · host ─────────────────────────────
+# Right: prefix indicator - date - time - host
 tmux set -g status-right-length 80
 tmux set -g status-right \
 	"#{?client_prefix,#[fg=$orange]$sep_l#[bg=$orange]#[fg=$bg]#[bold] PREFIX #[default] ,}\
@@ -115,7 +112,7 @@ tmux set -g status-right \
 #[fg=$comment]$sep_l#[bg=$comment]#[fg=$bg]#[bold] %H:%M \
 #[bg=$blue]#[fg=$bg]#[bold]$sep_l #H "
 
-# ── Windows ──────────────────────────────────────────────────────────────────
+# Windows
 tmux set -g window-status-separator ""
 
 # Inactive window
