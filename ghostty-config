@@ -39,3 +39,4 @@ window-padding-y = 6
 gtk-titlebar=false
 cursor-style-blink = false
 cursor-style = block
+shell-integration-features = no-cursor

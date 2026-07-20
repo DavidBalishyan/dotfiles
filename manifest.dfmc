@@ -66,6 +66,11 @@ desc = Wezterm terminal emulator
 source = wezterm.lua -> ~/.wezterm.lua
 condition = command:wezterm
 
+[kitty]
+desc = Kitty terminal emulator
+source = kitty.conf -> ~/.config/kitty/kitty.conf
+condition = command:kitty
+
 [foot]
 desc = Foot Wayland terminal
 packages.apt = foot
