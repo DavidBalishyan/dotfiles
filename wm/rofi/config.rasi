@@ -1,6 +1,7 @@
 configuration {
 font: "JetBrainsMono Nerd Font 10.5";
 show-icons: true;
+modes: [window,drun,run,ssh,filebrowser];
 terminal: "st";
   timeout {
       action: "kb-cancel";

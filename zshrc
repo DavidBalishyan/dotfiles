@@ -229,7 +229,10 @@ if is_installed betterfetch; then
     alias bfetch="betterfetch"
 fi
 
-### Things to run on shell startup
+### Things to run on shell startup (with output)
+# if [[ -n $TERM ]]; then
+#    echo "$TERM"
+# fi
 
 # https://davidbalishyan.github.io/namaskar
 if is_installed namaskar; then
@@ -240,6 +243,8 @@ fi
 if is_installed timedate; then
     timedate
 fi
+
+### End of things to run on shell startup (with output)
 
 if [ -f "$HOME/.secret.sh" ]; then
     source "$HOME/.secret.sh"

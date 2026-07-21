@@ -32,11 +32,15 @@ font-family = "JetBrainsMono Nerd Font"
 font-size = 15
 
 # Window opacity & padding
-background-opacity = 0.95
+background-opacity = 1
 window-padding-x = 6
 window-padding-y = 6
 
-gtk-titlebar=false
+gtk-titlebar = false
+gtk-tabs-location = top
+window-theme = ghostty
+window-titlebar-background = #15161e
+window-titlebar-foreground = #c0caf5
 cursor-style-blink = false
 cursor-style = block
 shell-integration-features = no-cursor
